@@ -1,28 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>wengge987</title>
+<search>
   
-  <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2016-08-26T10:59:19.070Z</updated>
-  <id>http://yoursite.com/</id>
-  
-  <author>
-    <name>wenglihong</name>
     
-  </author>
-  
-  <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2016/08/26/hello-world/"/>
-    <id>http://yoursite.com/2016/08/26/hello-world/</id>
-    <published>2016-08-26T10:59:19.078Z</published>
-    <updated>2016-08-26T10:59:19.070Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>http://yoursite.com/2016/08/26/hello-world/</url>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
@@ -32,24 +16,12 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 ]]></content>
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ROS学习（七）ROS参数服务（1）</title>
-    <link href="http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%83%EF%BC%89ROS%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%EF%BC%881%EF%BC%89/"/>
-    <id>http://yoursite.com/2016/08/26/ROS学习（七）ROS参数服务（1）/</id>
-    <published>2016-08-25T16:00:00.000Z</published>
-    <updated>2016-08-26T03:28:51.324Z</updated>
-    
-    <content type="html"><![CDATA[<p>在任何机器人系统中，参数传递都是一个十分重要的功能，不论是传感器的设置，还是控制参数的调整，都需要留出方便的参数调试接口，有的参数只在启动程序启动时更改，有的参数却希望在运行时能够被动态修改，在ROS中，可以通过参数服务来实现上面的想法。</p>
+    <entry>
+      <title><![CDATA[ROS学习（七）ROS参数服务（1）]]></title>
+      <url>http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%83%EF%BC%89ROS%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%EF%BC%881%EF%BC%89/</url>
+      <content type="html"><![CDATA[<p>在任何机器人系统中，参数传递都是一个十分重要的功能，不论是传感器的设置，还是控制参数的调整，都需要留出方便的参数调试接口，有的参数只在启动程序启动时更改，有的参数却希望在运行时能够被动态修改，在ROS中，可以通过参数服务来实现上面的想法。</p>
 <p>首先熟悉一下rosparam指令，用rosparam -h可以获得如下帮助<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Commands:</div><div class="line">	rosparam set	set parameter</div><div class="line">	rosparam get	get parameter</div><div class="line">	rosparam load	load parameters from file</div><div class="line">	rosparam dump	dump parameters to file</div><div class="line">	rosparam delete	delete parameter</div><div class="line">	rosparam list	list parameter names</div></pre></td></tr></table></figure></p>
 <p>用上面几个指令可以方便地用命令行获得或更改参数。</p>
 <p>下面通过一段简单的代码片段来熟悉一下如何向ROS程序传递参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">#include &lt;ros/ros.h&gt;</div><div class="line"></div><div class="line">using namespace  std;</div><div class="line"></div><div class="line">int main(int argc, char** argv)</div><div class="line">&#123;</div><div class="line">    ros::init(argc, argv, &quot;param_demo&quot;);</div><div class="line">    ros::NodeHandle n;</div><div class="line">    ros::NodeHandle pn(&quot;~my_namespace&quot;);</div><div class="line">  </div><div class="line">    string s;</div><div class="line">    int num;</div><div class="line">    </div><div class="line">    n.param&lt;string&gt;(&quot;string_param&quot;, s, &quot;default_string&quot;);</div><div class="line">    pn.param&lt;int&gt;(&quot;int_param&quot;, num, 2333);</div><div class="line"></div><div class="line">//    n.setParam(&quot;string_param&quot;,&quot;default_string&quot;); </div><div class="line">//    pn.setParam(&quot;int_param&quot;,2333);   </div><div class="line"></div><div class="line">    printf(&quot;\nstring_param:  %s\n&quot;, s.c_str());//输出初始化值</div><div class="line">    printf(&quot;int_param:  %d\n\n&quot;, num);//输出初始化值</div><div class="line">    </div><div class="line">    ros::Rate loop_rate(0.5);</div><div class="line"></div><div class="line">    while (ros::ok())</div><div class="line">    &#123;</div><div class="line">        n.getParam(&quot;string_param&quot;,s);	</div><div class="line">        printf(&quot;string_param:  %s\n&quot;, s.c_str());</div><div class="line">        pn.getParam(&quot;int_param&quot;,num);</div><div class="line">        printf(&quot;int_param:  %d\n\n&quot;, num);</div><div class="line">        </div><div class="line">		ros::spinOnce();</div><div class="line">		loop_rate.sleep();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -75,29 +47,12 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;launch&gt;</div><div class="line">  &lt;node name=&quot;param_demo&quot; pkg=&quot;param_demo&quot; type=&quot;param_demo&quot; output=&quot;screen&quot;&gt; </div><div class="line"> 	 &lt;param name=&quot;string_param&quot; value=&quot;from launch file&quot; /&gt;</div><div class="line">  	 &lt;param name=&quot;int_param&quot; value=&quot;999&quot; /&gt;</div><div class="line">  &lt;/node&gt;</div><div class="line">&lt;/launch&gt;</div></pre></td></tr></table></figure>
 <p>不过在使用中要注意的是，似乎不能对全局节点和私有节点的参数同时初始化，所有尽量都使用私有节点来传递参数。<br>用launch文件初始化参数的优势是明显的，可以不查看源程序就可以知道节点用到的参数以及给定的初始值，并且找到一个合适的参数后，可以将它保存到launch文件而不必修改和重新编译源程序。</p>
 ]]></content>
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;在任何机器人系统中，参数传递都是一个十分重要的功能，不论是传感器的设置，还是控制参数的调整，都需要留出方便的参数调试接口，有的参数只在启动程序启动时更改，有的参数却希望在运行时能够被动态修改，在ROS中，可以通过参数服务来实现上面的想法。&lt;/p&gt;
-&lt;p&gt;首先熟悉一下rosp
-    
-    </summary>
-    
-      <category term="ROS学习" scheme="http://yoursite.com/categories/ROS%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="ROS" scheme="http://yoursite.com/tags/ROS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ROS学习（三）——package.xml和CmakeList.txt文件的编写</title>
-    <link href="http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94package.xml%E5%92%8CCmakeList.txt%E6%96%87%E4%BB%B6%E7%9A%84%E7%BC%96%E5%86%99/"/>
-    <id>http://yoursite.com/2016/08/26/ROS学习（三）——package.xml和CmakeList.txt文件的编写/</id>
-    <published>2016-08-25T16:00:00.000Z</published>
-    <updated>2016-08-26T03:16:52.052Z</updated>
-    
-    <content type="html"><![CDATA[<p>package.xml和CmakeList.txt文件是生成程序包和节点的重要配置文件，在开始编写我们的程序之前，对这两个文件的编写需要有一定的了解。</p>
+    <entry>
+      <title><![CDATA[ROS学习（三）——package.xml和CmakeList.txt文件的编写]]></title>
+      <url>http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94package.xml%E5%92%8CCmakeList.txt%E6%96%87%E4%BB%B6%E7%9A%84%E7%BC%96%E5%86%99/</url>
+      <content type="html"><![CDATA[<p>package.xml和CmakeList.txt文件是生成程序包和节点的重要配置文件，在开始编写我们的程序之前，对这两个文件的编写需要有一定的了解。</p>
 <p><strong>1.package.xml。</strong><br>package.xml实际上是一个程序包的描述文件，以下参考ros百科入门教程中的一个xml文件来解读。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</div><div class="line">&lt;package&gt;</div><div class="line">  &lt;name&gt;beginner_tutorials&lt;/name&gt;</div><div class="line">  &lt;version&gt;0.1.0&lt;/version&gt;</div><div class="line">  &lt;description&gt;The beginner_tutorials package&lt;/description&gt;</div><div class="line"></div><div class="line">  &lt;maintainer email=&quot;you@yourdomain.tld&quot;&gt;Your Name&lt;/maintainer&gt;</div><div class="line">  &lt;license&gt;BSD&lt;/license&gt;</div><div class="line">  &lt;url type=&quot;website&quot;&gt;http://wiki.ros.org/beginner_tutorials&lt;/url&gt;</div><div class="line">  &lt;author email=&quot;you@yourdomain.tld&quot;&gt;Jane Doe&lt;/author&gt;</div><div class="line"></div><div class="line">  &lt;buildtool_depend&gt;catkin&lt;/buildtool_depend&gt;</div><div class="line"></div><div class="line">  &lt;build_depend&gt;roscpp&lt;/build_depend&gt;</div><div class="line">  &lt;build_depend&gt;rospy&lt;/build_depend&gt;</div><div class="line">  &lt;build_depend&gt;std_msgs&lt;/build_depend&gt;</div><div class="line"></div><div class="line">  &lt;run_depend&gt;roscpp&lt;/run_depend&gt;</div><div class="line">  &lt;run_depend&gt;rospy&lt;/run_depend&gt;</div><div class="line">  &lt;run_depend&gt;std_msgs&lt;/run_depend&gt;</div><div class="line"></div><div class="line">&lt;/package&gt;</div></pre></td></tr></table></figure>
 <p>在描述文件中，有几个重要的参数需要注意，出错将导致编译无法通过，一个是name，决定了编译出的程序包的名称，另外是build_depend和run_depend，它们指明了程序包编译和运行的依赖项，通常是所用到的库文件的名称。这三个参数需要根据自己的需要修改，其他的参数更多的是程序维护这的信息。<br>实际上，上面的xml文件是一种旧的书写格式，现在ros支持新的书写格式，与第一中格式的差别不大，并且ros对两种xml文件格式都是兼容的，新格式的xml文件可以参照下面的写法</p>
@@ -114,29 +69,12 @@
 <p>target_link_libraries()<br>指定所生成的可执行文件所链接的库文件，通常写在add_executable()之后。一般来说，要生成一个ros节点，必须添加catkin_LIBRARIES，例如<br>target_link_libraries(myNode  ${catkin_LIBRARIES})</p>
 <p>install()<br>install()是一个可选项，通常在程序编译完后，目标可执行文件被放在工作空间的devel文件夹中，但通常我们希望把目标放在系统中，这样程序包就可以作为被其他人使用，作为其他程序的依赖项。具体做法可以参考ros wiki <a href="http://wiki.ros.org/catkin/CMakeLists.txt" target="_blank" rel="external">http://wiki.ros.org/catkin/CMakeLists.txt</a></p>
 ]]></content>
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;package.xml和CmakeList.txt文件是生成程序包和节点的重要配置文件，在开始编写我们的程序之前，对这两个文件的编写需要有一定的了解。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1.package.xml。&lt;/strong&gt;&lt;br&gt;package.xml实际上是一个程序
-    
-    </summary>
-    
-      <category term="ROS学习" scheme="http://yoursite.com/categories/ROS%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="ROS" scheme="http://yoursite.com/tags/ROS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ROS学习（二）——ROS文件系统</title>
-    <link href="http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/"/>
-    <id>http://yoursite.com/2016/08/26/ROS学习（二）——文件系统/</id>
-    <published>2016-08-25T16:00:00.000Z</published>
-    <updated>2016-08-26T03:12:04.360Z</updated>
-    
-    <content type="html"><![CDATA[<p>学习ROS的文件系统，要了解几个重要的概念，主要包括<br>1.工作空间（workspace）<br>2.程序包（package）<br>3.节点（node）</p>
+    <entry>
+      <title><![CDATA[ROS学习（二）——ROS文件系统]]></title>
+      <url>http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+      <content type="html"><![CDATA[<p>学习ROS的文件系统，要了解几个重要的概念，主要包括<br>1.工作空间（workspace）<br>2.程序包（package）<br>3.节点（node）</p>
 <p>1.工作空间</p>
 <p>在ROS入门教程中，在开始所有的编程工作之前，首先是要创建一个catkin_ws，即catkin工作空间，需要创建这样一个工作空间的原因与这个catkin工具有关。<br>    Catkin is a collection of CMake macros and associated code used to build packages used in ROS.<a href="http://docs.ros.org/api/catkin/html/" target="_blank" rel="external">参考网页</a><br>    就是说，catkin是一些cmake宏的集合，以及用于编译ros程序包的相关代码，简单理解它就是一个编译程序的工具，具体实现上可以参看ros安装目录下的catkin_make的python脚本，实际上catkin_make的工作就是确认各种编译需要的文件的存在性以及路径，解析程序包之间的依赖关系等等，简单了解即可。<br>    正是由于ros编译程序采用了catkin_make工具，因此我们需要将创建的程序包放在catkin工作空间中，这样就简化了编译程序的工作，省去了编写编译文件中的许多工作量。<br>更多关于catkin工作空间的资料，可以参考<br><a href="http://wiki.ros.org/cn/ROS/Tutorials/CreatingPackage" target="_blank" rel="external">http://wiki.ros.org/cn/ROS/Tutorials/CreatingPackage</a><br><a href="http://docs.ros.org/api/catkin/html/" target="_blank" rel="external">http://docs.ros.org/api/catkin/html/</a><br>/opt/ros/indigo/bin/catkin_make</p>
 <p>2.程序包</p>
@@ -151,30 +89,12 @@
 <p>一个节点其实只不过是ROS程序包中的一个可执行文件。ROS节点可以使用topic与其他节点通信。节点可以发布或接收一个话题。节点也可以提供或使用某种服务。<br>我们最主要的工作就是要编写节点程序，这里就回到了我们熟悉的编写程序的部分，要编写源文件，头文件，在程序中定义节点的输入输出接口，执行算法，实现逻辑判断等等。编写完节点程序，要让该节点程序成为一个可执行文件，需要在CmakeList.txt添加相应的命令，这个等下篇细讲。</p>
 <p>总结一下，本文主要介绍了ros文件系统的组织形式，包括工作空间，程序包和节点，工作空间的创建可以说是一劳永逸，主要目的就是为了使用catkin工具，程序包就是一个解决方案，每次新建时都要用描述文件来配置，节点是一个可执行文件，CmakeList.txt用来对程序包和节点进行编译。<br>另外，ros wiki上关于文件系统的介绍多是关于文件系统指令的使用，rospack , roscd , rosls等，可以了解一下<br><a href="http://wiki.ros.org/cn/ROS/Tutorials/NavigatingTheFilesystem" target="_blank" rel="external">http://wiki.ros.org/cn/ROS/Tutorials/NavigatingTheFilesystem</a></p>
 ]]></content>
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;学习ROS的文件系统，要了解几个重要的概念，主要包括&lt;br&gt;1.工作空间（workspace）&lt;br&gt;2.程序包（package）&lt;br&gt;3.节点（node）&lt;/p&gt;
-&lt;p&gt;1.工作空间&lt;/p&gt;
-&lt;p&gt;在ROS入门教程中，在开始所有的编程工作之前，首先是要创建一个catki
-    
-    </summary>
-    
-      <category term="ROS学习" scheme="http://yoursite.com/categories/ROS%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="ROS" scheme="http://yoursite.com/tags/ROS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ROS学习（五）ROS消息传递——自定义消息</title>
-    <link href="http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%94%EF%BC%89ROS%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E2%80%94%E2%80%94%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B6%88%E6%81%AF/"/>
-    <id>http://yoursite.com/2016/08/26/ROS学习（五）ROS消息传递——自定义消息/</id>
-    <published>2016-08-25T16:00:00.000Z</published>
-    <updated>2016-08-26T03:26:43.112Z</updated>
-    
-    <content type="html"><![CDATA[<p>尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型的例子是can总线数据帧的传递，数据包中包括id号，数据长度以及数据部分，我们希望每个部分都有一个变量名称来表示，通常我们在这种场合会使用一个结构体封装数据，在ROS中，可以用自定义msg完成用户数据封装的功能。<br>以can数据帧的封装为例，来学习一下自定义msg的使用方法。</p>
+    <entry>
+      <title><![CDATA[ROS学习（五）ROS消息传递——自定义消息]]></title>
+      <url>http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%94%EF%BC%89ROS%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E2%80%94%E2%80%94%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B6%88%E6%81%AF/</url>
+      <content type="html"><![CDATA[<p>尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型的例子是can总线数据帧的传递，数据包中包括id号，数据长度以及数据部分，我们希望每个部分都有一个变量名称来表示，通常我们在这种场合会使用一个结构体封装数据，在ROS中，可以用自定义msg完成用户数据封装的功能。<br>以can数据帧的封装为例，来学习一下自定义msg的使用方法。</p>
 <p> 1.定义用户数据<br> 这一步比较简单，在程序包文件夹下新建一个msg文件夹，在文件夹下新建一个can_data.msg文件，并在文件中写入以下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">std_msgs/Header header</div><div class="line">int16 id </div><div class="line">int16 len </div><div class="line">int32[4] data</div></pre></td></tr></table></figure></p>
 <p>这样就定义好了一个自定义消息，msg文件的名称就是消息的类型。</p>
 <p>2.添加编译支持<br>为了让自定义的数据类型能够使用，需要将它编译成ROS中的消息。在使用std_msgs时，我们知道，要使用某个数据类型的消息，需要包含对应的头文件。因此需要将.msg文件编译生成.h文件，并在使用自定义消息的场合包含改头文件。我们需要做以下几处更改。<br><strong>package.xml</strong><br>package.xml需要添加编译依赖项和运行依赖项</p>
@@ -186,55 +106,23 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">custom_msgs_demo::can_data output;</div><div class="line">output.header.seq = count;</div><div class="line">output.header.stamp = ros::Time::now();</div><div class="line">output.header.frame_id = &quot;can_data&quot;;</div><div class="line">output.id = 0x101;</div><div class="line">output.len = 2;</div><div class="line">output.data[0] = 10;</div><div class="line">output.data[1] = 20;</div><div class="line">output.data[2] = 30;</div><div class="line">output.data[3] = 40;</div></pre></td></tr></table></figure>
 <p>完整工程参考<br><a href="https://github.com/wenglihong/wlh_ros_demo/tree/master/msg_demo/custom_msgs_demo" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/tree/master/msg_demo/custom_msgs_demo</a></p>
 ]]></content>
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型的例子是can总线数据帧的传递，数据包中包括id号，数据长度以及数据部分，我们希望每个部分都有一个变量名称来表示，通常我们在这种场合会使用一个结构体封装数据，在ROS中，可以
-    
-    </summary>
-    
-      <category term="ROS学习" scheme="http://yoursite.com/categories/ROS%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="ROS" scheme="http://yoursite.com/tags/ROS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ROS学习（九）ROS Network（1）</title>
-    <link href="http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B9%9D%EF%BC%89ROS%20Network%EF%BC%881%EF%BC%89/"/>
-    <id>http://yoursite.com/2016/08/26/ROS学习（九）ROS Network（1）/</id>
-    <published>2016-08-25T16:00:00.000Z</published>
-    <updated>2016-08-26T03:30:39.076Z</updated>
-    
-    <content type="html"><![CDATA[<p>我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行了一个ros master，ros master相当于一个服务器，所有节点都可以通过ros master发布消息和订阅消息，还包括发布和订阅服务，以及参数服务，只有连接在相同ros master下的节点才能互相通信。<br>怎样才能知道节点是运行在哪个master下的呢？实际上ROS中默认一个机器上只运行一个ros master，其运行的端口默认为<a href="http://localhost:11311,这个端口默认值存于ROS环境变量ROS_MASTER_URI中，可以通过下面指令查看检验，或者在运行roscore的命令行输出中也可以看到" target="_blank" rel="external">http://localhost:11311,这个端口默认值存于ROS环境变量ROS_MASTER_URI中，可以通过下面指令查看检验，或者在运行roscore的命令行输出中也可以看到</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo $ROS_MASTER_URI</div></pre></td></tr></table></figure></p>
+    <entry>
+      <title><![CDATA[ROS学习（九）ROS Network（1）]]></title>
+      <url>http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B9%9D%EF%BC%89ROS%20Network%EF%BC%881%EF%BC%89/</url>
+      <content type="html"><![CDATA[<p>我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行了一个ros master，ros master相当于一个服务器，所有节点都可以通过ros master发布消息和订阅消息，还包括发布和订阅服务，以及参数服务，只有连接在相同ros master下的节点才能互相通信。<br>怎样才能知道节点是运行在哪个master下的呢？实际上ROS中默认一个机器上只运行一个ros master，其运行的端口默认为<a href="http://localhost:11311,这个端口默认值存于ROS环境变量ROS_MASTER_URI中，可以通过下面指令查看检验，或者在运行roscore的命令行输出中也可以看到" target="_blank" rel="external">http://localhost:11311,这个端口默认值存于ROS环境变量ROS_MASTER_URI中，可以通过下面指令查看检验，或者在运行roscore的命令行输出中也可以看到</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo $ROS_MASTER_URI</div></pre></td></tr></table></figure></p>
 <p>还有其他一些ROS环境变量，可以了解一下<a href="http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH" target="_blank" rel="external">http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH</a><br>从上面的分析可以看出，即使是不同机器上的程序节点，只要通过网络连接到ros master的运行端口，就能实现消息的发布和订阅，并且发布的消息就能被所有连接到ros master端口的机器和节点所订阅，同样也可以订阅连接到这个端口的其他节点所发布的消息。有了这样的通讯方式，我们完全不用往我们的程序节点中添加任何与通讯相关的代码，就能订阅到其他机器发布的话题，与获取本机上其他节点发布的话题没有任何区别。<br>下面来梳理一下实现ROS多机通讯的实现方法。</p>
 <p> <strong>1. 保证多机之间网络连接无误</strong><br>     在/etc/hosts中添加想要连接的那台机器的ip地址和主机名称，使用ping指令检查本机的网络连接和其他机器的网络连接。这里需要注意，如果不止两台机器连接，需要把所有需要和本机通讯的机器的ip和主机名添加到hosts文件里。<br> <strong>2. 修改ROS环境变量</strong><br>与网络通讯相关的ROS环境变量主要有3个，分别是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ROS_MASTER_URI</div><div class="line">ROS_IP</div><div class="line">ROS_HOSTNAME</div></pre></td></tr></table></figure></p>
 <p>前面已经提到，这种通讯方式只能运行一个ros master，因此，选定一台机器作为master，将所有机器的ROS_MASTER_URI设置为改机器的ROS_MASTER_URI值，举个例子，我的主机名为wlh，则我的ROS_MASTER_URI应该设置为<a href="http://wlh:11311,则所有连接到我这个ros" target="_blank" rel="external">http://wlh:11311,则所有连接到我这个ros</a> master的机器上的ROS_MASTER_URI都应该设置为<a href="http://wlh:11311，设置环境变量值用export指令，ROS_IP和ROS_HOSTNAME则分别是本机的IP地址和主机名。" target="_blank" rel="external">http://wlh:11311，设置环境变量值用export指令，ROS_IP和ROS_HOSTNAME则分别是本机的IP地址和主机名。</a><br>    <strong>3. 简单测试</strong><br> 为了测试通讯是否成功，只要用rostopic pub指令在一台机器上发布一条消息，如果通讯成功，其他所有和该机器连接的机器上，就能使用rostopic echo接收到消息了。</p>
 <p>参考链接<br><a href="http://wiki.ros.org/ROS/Tutorials/MultipleMachines" target="_blank" rel="external">http://wiki.ros.org/ROS/Tutorials/MultipleMachines</a><br><a href="http://wiki.ros.org/ROS/NetworkSetup" target="_blank" rel="external">http://wiki.ros.org/ROS/NetworkSetup</a></p>
 ]]></content>
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行了一个ros master，ros master相当于一个服务器，所有节点都可以通过ros master发布消息和订阅消息，还包括发布和订阅服务，以及参数服务，只有连接在相同
-    
-    </summary>
-    
-      <category term="ROS学习" scheme="http://yoursite.com/categories/ROS%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="ROS" scheme="http://yoursite.com/tags/ROS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ROS学习（八）ROS参数服务（2）</title>
-    <link href="http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%85%AB%EF%BC%89ROS%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%EF%BC%882%EF%BC%89/"/>
-    <id>http://yoursite.com/2016/08/26/ROS学习（八）ROS参数服务（2）/</id>
-    <published>2016-08-25T16:00:00.000Z</published>
-    <updated>2016-08-26T03:29:51.708Z</updated>
-    
-    <content type="html"><![CDATA[<p>在上一篇文章中，实现了ROS程序中的参数初始化，并且用一个while循环检测参数服务器中的参数变化，实现了参数的动态修改。显然这样实现动态修改参数并不是最优，要浪费许多系统资源来检测参数修改，还有一个更优更方便，动态修改参数的方法，那就是使用dynamic_reconfigure参数服务。先贴代码</p>
+    <entry>
+      <title><![CDATA[ROS学习（八）ROS参数服务（2）]]></title>
+      <url>http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%85%AB%EF%BC%89ROS%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%EF%BC%882%EF%BC%89/</url>
+      <content type="html"><![CDATA[<p>在上一篇文章中，实现了ROS程序中的参数初始化，并且用一个while循环检测参数服务器中的参数变化，实现了参数的动态修改。显然这样实现动态修改参数并不是最优，要浪费许多系统资源来检测参数修改，还有一个更优更方便，动态修改参数的方法，那就是使用dynamic_reconfigure参数服务。先贴代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">#include &lt;ros/ros.h&gt;</div><div class="line"></div><div class="line">// Dynamic reconfigure includes.</div><div class="line">#include &lt;dynamic_reconfigure/server.h&gt;</div><div class="line">// Auto-generated from cfg/ directory.</div><div class="line">#include &lt;param_demo/dynamic_paramConfig.h&gt;</div><div class="line"></div><div class="line">using namespace  std;</div><div class="line"></div><div class="line">string s;</div><div class="line">int num;</div><div class="line"></div><div class="line">void paramConfigCallback(param_demo::dynamic_paramConfig &amp;config, uint32_t level)</div><div class="line">&#123;</div><div class="line">	s = config.s;</div><div class="line">	num = config.num;</div><div class="line">	printf(&quot;\nstring_param:  %s\n&quot;, s.c_str());</div><div class="line">    printf(&quot;int_param:  %d\n\n&quot;, num);</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main(int argc, char** argv)</div><div class="line">&#123;</div><div class="line">    ros::init(argc, argv, &quot;dynamic_param_demo&quot;);</div><div class="line">    ros::NodeHandle pnh(&quot;~&quot;);</div><div class="line">    </div><div class="line">    dynamic_reconfigure::Server&lt;param_demo::dynamic_paramConfig&gt; dr_srv;</div><div class="line">  	dynamic_reconfigure::Server&lt;param_demo::dynamic_paramConfig&gt;::CallbackType cb;</div><div class="line">  	</div><div class="line">  	cb = boost::bind(&amp;paramConfigCallback, _1, _2);</div><div class="line">    dr_srv.setCallback(cb);</div><div class="line">  </div><div class="line">    </div><div class="line">    pnh.param&lt;string&gt;(&quot;string_param&quot;, s, &quot;default_string&quot;);</div><div class="line">    pnh.param&lt;int&gt;(&quot;int_param&quot;, num, 2333);</div><div class="line"></div><div class="line">    printf(&quot;\nstring_param:  %s\n&quot;, s.c_str());//输出初始化值</div><div class="line">    printf(&quot;int_param:  %d\n\n&quot;, num);//输出初始化值</div><div class="line">    </div><div class="line">    ros::spin();  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>片段分析</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dynamic_reconfigure::Server&lt;param_demo::dynamic_paramConfig&gt; dr_srv;</div><div class="line">dynamic_reconfigure::Server&lt;param_demo::dynamic_paramConfig&gt;::CallbackType cb;</div></pre></td></tr></table></figure>
@@ -260,28 +148,12 @@
 <p>可以看到一个参数更改页面，我们也可以将这个命令放到launch文件中和节点一起启动，在调试的时候十分方便。</p>
 <p>完整工程代码查看<br><a href="https://github.com/wenglihong/wlh_ros_demo/tree/master/param_demo" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/tree/master/param_demo</a></p>
 ]]></content>
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;在上一篇文章中，实现了ROS程序中的参数初始化，并且用一个while循环检测参数服务器中的参数变化，实现了参数的动态修改。显然这样实现动态修改参数并不是最优，要浪费许多系统资源来检测参数修改，还有一个更优更方便，动态修改参数的方法，那就是使用dynamic_reconfig
-    
-    </summary>
-    
-      <category term="ROS学习" scheme="http://yoursite.com/categories/ROS%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="ROS" scheme="http://yoursite.com/tags/ROS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ROS学习（十一）常见问题及解决方案</title>
-    <link href="http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-    <id>http://yoursite.com/2016/08/26/ROS学习（十一）常见问题及解决方案/</id>
-    <published>2016-08-25T16:00:00.000Z</published>
-    <updated>2016-08-26T03:32:28.676Z</updated>
-    
-    <content type="html"><![CDATA[<ul>
+    <entry>
+      <title><![CDATA[ROS学习（十一）常见问题及解决方案]]></title>
+      <url>http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+      <content type="html"><![CDATA[<ul>
 <li><strong>如何多次启动相同名称的节点</strong></li>
 </ul>
 <p>这个问题一般出现的场合有几种，需要用一份驱动程序打开多个相同的传感器，或者不同计算机通过协作，可能有节点和话题的名称产生冲突。<br>    对于这种情况，ROS给出了很简便的解决方案，要做的只是采用launch文件启动节点，在launch文件中使用名字空间，将一个节点用两个同的节点名称来启动。例如我们有一个GPS传感器的驱动程序节点，节点名称为GPS_Driver，如果我们需要启动一个GPS传感器时，我们只需要写这样一个启动文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;launch&gt;</div><div class="line">    &lt;node ns=&quot;rtk&quot; pkg=&quot;GPS_Driver&quot; type=&quot;GPS_Driver&quot; name=&quot;GPS_Driver&quot;&gt;</div><div class="line">    &lt;param name=&quot;port&quot; value=&quot;/dev/ttyS0&quot; /&gt;</div><div class="line">    &lt;/node&gt;</div><div class="line"></div><div class="line">	&lt;node ns=&quot;garmin&quot; pkg=&quot;GPS_Driver&quot; type=&quot;GPS_Driver&quot; name=&quot;GPS_Driver&quot;&gt;</div><div class="line">    &lt;param name=&quot;port&quot; value=&quot;/dev/ttyS1&quot; /&gt;</div><div class="line">    &lt;/node&gt;</div><div class="line">&lt;/launch&gt;</div></pre></td></tr></table></figure></p>
@@ -295,31 +167,12 @@
 </ul>
 <p>这个问题一般在这两种情况下出现，一是直接从其他计算机上拷贝的程序包放在本地计算机上编译时，二是对于本地已经写好的程序修改了msg文件，不起作用的意思是原本正常使用的msg文件失效了，就算重新编译，源程序也无法正确使用新编译的msg文件，例如原先有个程序节点发布了自定义消息my_msg，后来更改了my_msg.msg里的内容，重新编译后，该节点发布的my_msg使用命令rostopic echo 就无法输出了。<br>    这中情况的解决方案是，注释掉CMakeList.txt中生成可执行文件的部分，先编译msg文件，再将源程序编译成可执行文件。</p>
 ]]></content>
+    </entry>
     
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;如何多次启动相同名称的节点&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;这个问题一般出现的场合有几种，需要用一份驱动程序打开多个相同的传感器，或者不同计算机通过协作，可能有节点和话题的名称产生冲突。&lt;br&gt;    对于这种情况，ROS给出了很简
-    
-    </summary>
-    
-      <category term="ROS学习" scheme="http://yoursite.com/categories/ROS%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="ROS" scheme="http://yoursite.com/tags/ROS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ROS学习（十）ROS Network（2）</title>
-    <link href="http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%8D%81%EF%BC%89ROS%20Network%EF%BC%882%EF%BC%89/"/>
-    <id>http://yoursite.com/2016/08/26/ROS学习（十）ROS Network（2）/</id>
-    <published>2016-08-25T16:00:00.000Z</published>
-    <updated>2016-08-26T03:31:21.520Z</updated>
-    
-    <content type="html"><![CDATA[<p>上一篇所提到的ROS系统之间的网络通讯，是通过将所有机器连接到一个ros master端口，实现不同机器之间消息的传递。这种方式有个潜在的缺陷，那就是整个网络中只能存在一个ros master，相当于只有一个服务器，所有机器发布和订阅的消息都必须经过该服务器，当数据量大时，可能会导致服务器负载过重（仅为猜测，未实际验证）。因此有必要探究一下能否实现两台机器之间分别运行自己的ros master，并且能够互相通信的方法。<br>从ROS wiki中找到了一下几种其他的通讯方案</p>
+    <entry>
+      <title><![CDATA[ROS学习（十）ROS Network（2）]]></title>
+      <url>http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%8D%81%EF%BC%89ROS%20Network%EF%BC%882%EF%BC%89/</url>
+      <content type="html"><![CDATA[<p>上一篇所提到的ROS系统之间的网络通讯，是通过将所有机器连接到一个ros master端口，实现不同机器之间消息的传递。这种方式有个潜在的缺陷，那就是整个网络中只能存在一个ros master，相当于只有一个服务器，所有机器发布和订阅的消息都必须经过该服务器，当数据量大时，可能会导致服务器负载过重（仅为猜测，未实际验证）。因此有必要探究一下能否实现两台机器之间分别运行自己的ros master，并且能够互相通信的方法。<br>从ROS wiki中找到了一下几种其他的通讯方案</p>
 <p><a href="http://wiki.ros.org/rocon_multimaster" target="_blank" rel="external">rocon_multimaster</a><br><a href="http://wiki.ros.org/multimaster_fkie" target="_blank" rel="external">multimaster_fkie</a><br><a href="http://wiki.ros.org/foreign_relay" target="_blank" rel="external">foreign_relay</a><br><a href="http://wiki.ros.org/wifi_comm" target="_blank" rel="external">wifi_comm</a><br><a href="http://wiki.ros.org/multimaster" target="_blank" rel="external">multimaster</a></p>
 <p>比较一下感觉最后一个方案最为便捷，只需要做一些简单的配置而不涉及代码的修改。从链接中下载multimaster程序包，放在catkin_ws下的src文件夹，编译程序包</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/catkin_ws</div><div class="line">rosmake multimaster</div></pre></td></tr></table></figure>
@@ -331,28 +184,12 @@
 <p>运行master.launch<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">roslaunch multimaster master.launch master:=remote_host</div></pre></td></tr></table></figure></p>
 <p>这样，在两台计算机上分别运行master.launch后，就可以在命令行中看到远程计算机的ip与端口，发布和接收的消息，通讯就成功了。这个方案还有个好处是与第一种方案没有冲突，也就意味着我们可以选择某两台计算机作为服务器， 每个服务器又可以各自管理几台计算机，这样就可以降低第一种方案中一个服务器的压力。</p>
 ]]></content>
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;上一篇所提到的ROS系统之间的网络通讯，是通过将所有机器连接到一个ros master端口，实现不同机器之间消息的传递。这种方式有个潜在的缺陷，那就是整个网络中只能存在一个ros master，相当于只有一个服务器，所有机器发布和订阅的消息都必须经过该服务器，当数据量大时，
-    
-    </summary>
-    
-      <category term="ROS学习" scheme="http://yoursite.com/categories/ROS%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="ROS" scheme="http://yoursite.com/tags/ROS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ROS学习（四）ROS消息传递——std_msgs</title>
-    <link href="http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89ROS%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E2%80%94%E2%80%94std_msgs/"/>
-    <id>http://yoursite.com/2016/08/26/ROS学习（四）ROS消息传递——std_msgs/</id>
-    <published>2016-08-25T16:00:00.000Z</published>
-    <updated>2016-08-26T03:24:08.700Z</updated>
-    
-    <content type="html"><![CDATA[<p>ROS中，节点之间通过发布话题和订阅话题来通信，在程序中是通过消息发布器和订阅器来实现，数据流通过话题的发布和订阅在节点之间传播，而数据流的数据类型则称为消息，例如ros入门教程中的节点talker和listener之间通过话题”chatter”来传递数据流，而数据流的具体数据类型则是std_msgs/String。参见<a href="http://wiki.ros.org/cn/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29" target="_blank" rel="external">http://wiki.ros.org/cn/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29</a><br>教程中只介绍了std_msgs/String消息的发布和接收，但我们经常还需要传递其他类型比如整形，字符型等数据，这些类型的如何传递呢？实际上std_msgs中已经包含了所有的基本数据类型，我们可以rosmsg指令对我们不了解的数据类型进行详细的考察。<br>打开一个新终端，键入</p>
+    <entry>
+      <title><![CDATA[ROS学习（四）ROS消息传递——std_msgs]]></title>
+      <url>http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89ROS%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E2%80%94%E2%80%94std_msgs/</url>
+      <content type="html"><![CDATA[<p>ROS中，节点之间通过发布话题和订阅话题来通信，在程序中是通过消息发布器和订阅器来实现，数据流通过话题的发布和订阅在节点之间传播，而数据流的数据类型则称为消息，例如ros入门教程中的节点talker和listener之间通过话题”chatter”来传递数据流，而数据流的具体数据类型则是std_msgs/String。参见<a href="http://wiki.ros.org/cn/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29" target="_blank" rel="external">http://wiki.ros.org/cn/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29</a><br>教程中只介绍了std_msgs/String消息的发布和接收，但我们经常还需要传递其他类型比如整形，字符型等数据，这些类型的如何传递呢？实际上std_msgs中已经包含了所有的基本数据类型，我们可以rosmsg指令对我们不了解的数据类型进行详细的考察。<br>打开一个新终端，键入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rosmsg -h</div></pre></td></tr></table></figure>
 <p>可以看到</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">rosmsg is a command-line tool for displaying information about ROS Message types.</div><div class="line"></div><div class="line">Commands:</div><div class="line">	rosmsg show	Show message description</div><div class="line">	rosmsg list	List all messages</div><div class="line">	rosmsg md5	Display message md5sum</div><div class="line">	rosmsg package	List messages in a package</div><div class="line">	rosmsg packages	List packages that contain messages</div><div class="line"></div><div class="line">Type rosmsg &lt;command&gt; -h for more detailed usage</div></pre></td></tr></table></figure>
@@ -367,44 +204,18 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">#include &quot;ros/ros.h&quot;</div><div class="line">#include &quot;std_msgs/Int8.h&quot;</div><div class="line"></div><div class="line">void int8Callback(const std_msgs::Int8::ConstPtr&amp; msg)</div><div class="line">&#123;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line">//这里也可以不用指针接收，则对发布的消息进行拷贝，如</div><div class="line">//void int8Callback(const std_msgs::Int8 msg)</div><div class="line"></div><div class="line">int main(int argc, char **argv)</div><div class="line">&#123;</div><div class="line">  ros::init(argc, argv, &quot;int8_sub&quot;);</div><div class="line">  ros::NodeHandle nh;</div><div class="line">  ros::Subscriber sub_int8 = nh.subscribe(&quot;int8&quot;, 10, int8Callback);</div><div class="line">  ros::spin();</div><div class="line">  return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>另外，std_msg下还包含了基本数据类型的向量，我们也可以很方便地传递向量，不过除了上面包含的步骤外，向量的赋值要格外注意，应该使用pushback()函数来填充数据。例如一个double类型向量，应该这样发布<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">std_msgs::Float64MultiArray val;</div><div class="line"></div><div class="line">val.data.push_back(1.0);</div><div class="line">val.data.push_back(2.0);</div><div class="line">val.data.push_back(3.0);</div><div class="line">val.data.push_back(4.0);</div><div class="line">val.data.push_back(5.0);</div><div class="line">val.data.push_back(6.0);</div><div class="line"></div><div class="line">pub_double.publish(val);</div></pre></td></tr></table></figure></p>
 ]]></content>
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;ROS中，节点之间通过发布话题和订阅话题来通信，在程序中是通过消息发布器和订阅器来实现，数据流通过话题的发布和订阅在节点之间传播，而数据流的数据类型则称为消息，例如ros入门教程中的节点talker和listener之间通过话题”chatter”来传递数据流，而数据流的具体
-    
-    </summary>
-    
-      <category term="ROS学习" scheme="http://yoursite.com/categories/ROS%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="ROS" scheme="http://yoursite.com/tags/ROS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ROS学习（六）ROS多线程订阅消息</title>
-    <link href="http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%85%AD%EF%BC%89ROS%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%AE%A2%E9%98%85%E6%B6%88%E6%81%AF/"/>
-    <id>http://yoursite.com/2016/08/26/ROS学习（六）ROS多线程订阅消息/</id>
-    <published>2016-08-25T16:00:00.000Z</published>
-    <updated>2016-08-26T03:27:46.840Z</updated>
-    
-    <content type="html"><![CDATA[<p>对于一些只订阅一个话题的简单节点来说，我们使用ros::spin()进入接收循环，每当有订阅的话题发布时，进入回调函数接收和处理消息数据。但是更多的时候，一个节点往往要接收和处理不同来源的数据，并且这些数据的产生频率也各不相同，当我们在一个回调函数里耗费太多时间时，会导致其他回调函数被阻塞，导致数据丢失。这种场合需要给一个节点开辟多个线程，保证数据流的畅通。<br>为了观察不同话题的消息被阻塞的情况，可以参考以下实验代码<br><a href="https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_pub.cpp" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_pub.cpp</a><br><a href="https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_sub.cpp" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_sub.cpp</a><br>可以看到，发布程序中，以10hz的频率发布了chatter1和chatter2两个话题，在订阅程序中，回调函数1中加入了2s的延时，导致了回调函数2也只能2s才能接收到一个数据，为了是回调函数2能正常接收数据，我研究一下在一个ROS节点中开辟多个线程的方法。</p>
+    <entry>
+      <title><![CDATA[ROS学习（六）ROS多线程订阅消息]]></title>
+      <url>http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%85%AD%EF%BC%89ROS%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%AE%A2%E9%98%85%E6%B6%88%E6%81%AF/</url>
+      <content type="html"><![CDATA[<p>对于一些只订阅一个话题的简单节点来说，我们使用ros::spin()进入接收循环，每当有订阅的话题发布时，进入回调函数接收和处理消息数据。但是更多的时候，一个节点往往要接收和处理不同来源的数据，并且这些数据的产生频率也各不相同，当我们在一个回调函数里耗费太多时间时，会导致其他回调函数被阻塞，导致数据丢失。这种场合需要给一个节点开辟多个线程，保证数据流的畅通。<br>为了观察不同话题的消息被阻塞的情况，可以参考以下实验代码<br><a href="https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_pub.cpp" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_pub.cpp</a><br><a href="https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_sub.cpp" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_sub.cpp</a><br>可以看到，发布程序中，以10hz的频率发布了chatter1和chatter2两个话题，在订阅程序中，回调函数1中加入了2s的延时，导致了回调函数2也只能2s才能接收到一个数据，为了是回调函数2能正常接收数据，我研究一下在一个ROS节点中开辟多个线程的方法。</p>
 <p>在ROS中，有两种方法可以在一个节点中开辟多个线程<br><strong>1.ros::MultiThreadedSpinner</strong><br>MultiThreadedSpinner类似于ros::spin()，在构造过程中可以指定它所用线程数，但如果不指定线程数或者线程数设置为0，它将在每个cpu内核开辟一个线程。<br>用法如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ros::MultiThreadedSpinner spinner(4); // Use 4 threads</div><div class="line">spinner.spin(); // spin() will not return until the node has been shutdown</div></pre></td></tr></table></figure></p>
 <p><strong>2.ros::AsyncSpinner</strong><br>AsyncSpinner比MultiThreadedSpinner更优，它有start() 和stop() 函数，并且在销毁的时候会自动停止。下面的用法等价于上面的MultiThreadedSpinner例子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ros::AsyncSpinner spinner(4); // Use 4 threads</div><div class="line">spinner.start();</div><div class="line">ros::waitForShutdown();</div></pre></td></tr></table></figure></p>
 <p>以上代码片参考了ROS wiki<br><a href="http://wiki.ros.org/roscpp/Overview/Callbacks%20and%20Spinning" target="_blank" rel="external">http://wiki.ros.org/roscpp/Overview/Callbacks%20and%20Spinning</a><br>完整的工程代码可以参考<br><a href="https://github.com/wenglihong/wlh_ros_demo/tree/master/multi_thread_demo" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/tree/master/multi_thread_demo</a></p>
 ]]></content>
+    </entry>
     
-    <summary type="html">
-    
-      &lt;p&gt;对于一些只订阅一个话题的简单节点来说，我们使用ros::spin()进入接收循环，每当有订阅的话题发布时，进入回调函数接收和处理消息数据。但是更多的时候，一个节点往往要接收和处理不同来源的数据，并且这些数据的产生频率也各不相同，当我们在一个回调函数里耗费太多时间时，会导致其
-    
-    </summary>
-    
-      <category term="ROS学习" scheme="http://yoursite.com/categories/ROS%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="ROS" scheme="http://yoursite.com/tags/ROS/"/>
-    
-  </entry>
   
-</feed>
+  
+</search>
