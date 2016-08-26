@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ROS," />
 
 
 
@@ -86,13 +86,19 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型的例子是can总线数据帧的传递，数据包中包括id号，数据长度以及数据部分，我们希望每个部分都有一个变量名称来表示，通常我们在这种场合会使用一个结构体封装数据，在ROS中，可以用自定义msg完成用户数据封装的功能。以can数据帧的封装为例，来学习一下自定义msg的使用方法。
+ 1.定义用户数据 这一步">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS学习（五）ROS消息传递——自定义消息">
+<meta property="og:url" content="http://yoursite.com/2016/02/01/ROS学习（五）ROS消息传递——自定义消息/index.html">
 <meta property="og:site_name" content="wengge987">
-<meta property="og:updated_time" content="2016-08-26T15:16:22.841Z">
+<meta property="og:description" content="尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型的例子是can总线数据帧的传递，数据包中包括id号，数据长度以及数据部分，我们希望每个部分都有一个变量名称来表示，通常我们在这种场合会使用一个结构体封装数据，在ROS中，可以用自定义msg完成用户数据封装的功能。以can数据帧的封装为例，来学习一下自定义msg的使用方法。
+ 1.定义用户数据 这一步">
+<meta property="og:updated_time" content="2016-08-26T16:03:28.020Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="ROS学习（五）ROS消息传递——自定义消息">
+<meta name="twitter:description" content="尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型的例子是can总线数据帧的传递，数据包中包括id号，数据长度以及数据部分，我们希望每个部分都有一个变量名称来表示，通常我们在这种场合会使用一个结构体封装数据，在ROS中，可以用自定义msg完成用户数据封装的功能。以can数据帧的封装为例，来学习一下自定义msg的使用方法。
+ 1.定义用户数据 这一步">
 
 
 
@@ -110,13 +116,7 @@
   };
 </script>
 
-  <title>
-  
-
-  
-    分类 | wengge987
-  
-</title>
+  <title> ROS学习（五）ROS消息传递——自定义消息 | wengge987 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -137,7 +137,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -270,16 +270,186 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-      <div class="category-all-page">
-        <div class="category-all-title">
-            目前共计 1 个分类
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ROS学习（五）ROS消息传递——自定义消息
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-01T16:29:00+08:00" content="2016-02-01">
+              2016-02-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ROS学习/" itemprop="url" rel="index">
+                    <span itemprop="name">ROS学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/01/ROS学习（五）ROS消息传递——自定义消息/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/01/ROS学习（五）ROS消息传递——自定义消息/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">本文总阅读量
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
         </div>
-        <div class="category-all">
-          <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ROS学习/">ROS学习</a><span class="category-list-count">10</span></li></ul>
-        </div>
-      </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型的例子是can总线数据帧的传递，数据包中包括id号，数据长度以及数据部分，我们希望每个部分都有一个变量名称来表示，通常我们在这种场合会使用一个结构体封装数据，在ROS中，可以用自定义msg完成用户数据封装的功能。<br>以can数据帧的封装为例，来学习一下自定义msg的使用方法。</p>
+<p> 1.定义用户数据<br> 这一步比较简单，在程序包文件夹下新建一个msg文件夹，在文件夹下新建一个can_data.msg文件，并在文件中写入以下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">std_msgs/Header header</div><div class="line">int16 id </div><div class="line">int16 len </div><div class="line">int32[4] data</div></pre></td></tr></table></figure></p>
+<p>这样就定义好了一个自定义消息，msg文件的名称就是消息的类型。</p>
+<p>2.添加编译支持<br>为了让自定义的数据类型能够使用，需要将它编译成ROS中的消息。在使用std_msgs时，我们知道，要使用某个数据类型的消息，需要包含对应的头文件。因此需要将.msg文件编译生成.h文件，并在使用自定义消息的场合包含改头文件。我们需要做以下几处更改。<br><strong>package.xml</strong><br>package.xml需要添加编译依赖项和运行依赖项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;build_depend&gt;message_generation&lt;/build_depend&gt;</div><div class="line">&lt;run_depend&gt;message_runtime&lt;/run_depend&gt;</div></pre></td></tr></table></figure>
+<p><strong>CmakeList.txt</strong><br>find_package()中添加message_generation<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">find_package(catkin REQUIRED COMPONENTS</div><div class="line">  message_generation</div><div class="line">  roscpp</div><div class="line">  rospy</div><div class="line">  std_msgs</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>add_message_files()中添加can_data.msg<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">add_message_files(</div><div class="line">  FILES</div><div class="line">  can_data.msg</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>generate_messages()去掉注释<br>catkin_package()添加message_runtime<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">catkin_package(</div><div class="line">  ...</div><div class="line">  CATKIN_DEPENDS ... message_runtime</div><div class="line">  ...</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>在程序中要使用can_data数据类型时，要包含头文件#include “custom_msgs_demo/can_data.h”，头文件是ROS编译自动生成的，这样，就能在程序中定义和使用can_data类型对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">custom_msgs_demo::can_data output;</div><div class="line">output.header.seq = count;</div><div class="line">output.header.stamp = ros::Time::now();</div><div class="line">output.header.frame_id = &quot;can_data&quot;;</div><div class="line">output.id = 0x101;</div><div class="line">output.len = 2;</div><div class="line">output.data[0] = 10;</div><div class="line">output.data[1] = 20;</div><div class="line">output.data[2] = 30;</div><div class="line">output.data[3] = 40;</div></pre></td></tr></table></figure>
+<p>完整工程参考<br><a href="https://github.com/wenglihong/wlh_ros_demo/tree/master/msg_demo/custom_msgs_demo" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/tree/master/msg_demo/custom_msgs_demo</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ROS/" rel="tag">#ROS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/31/ROS学习（四）ROS消息传递——std_msgs/" rel="next" title="ROS学习（四）ROS消息传递——std_msgs">
+                <i class="fa fa-chevron-left"></i> ROS学习（四）ROS消息传递——std_msgs
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/01/ROS学习（六）ROS多线程订阅消息/" rel="prev" title="ROS学习（六）ROS多线程订阅消息">
+                ROS学习（六）ROS多线程订阅消息 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -288,6 +458,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/02/01/ROS学习（五）ROS消息传递——自定义消息/"
+           data-title="ROS学习（五）ROS消息传递——自定义消息" data-url="http://yoursite.com/2016/02/01/ROS学习（五）ROS消息传递——自定义消息/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -307,8 +485,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/icon/avatar.jpg"
@@ -394,6 +581,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -513,6 +711,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

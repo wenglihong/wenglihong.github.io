@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ROS," />
 
 
 
@@ -86,13 +86,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="上一篇所提到的ROS系统之间的网络通讯，是通过将所有机器连接到一个ros master端口，实现不同机器之间消息的传递。这种方式有个潜在的缺陷，那就是整个网络中只能存在一个ros master，相当于只有一个服务器，所有机器发布和订阅的消息都必须经过该服务器，当数据量大时，可能会导致服务器负载过重（仅为猜测，未实际验证）。因此有必要探究一下能否实现两台机器之间分别运行自己的ros master，并">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS学习（十）ROS Network（2）">
+<meta property="og:url" content="http://yoursite.com/2016/03/08/ROS学习（十）ROS Network（2）/index.html">
 <meta property="og:site_name" content="wengge987">
-<meta property="og:updated_time" content="2016-08-26T15:16:22.841Z">
+<meta property="og:description" content="上一篇所提到的ROS系统之间的网络通讯，是通过将所有机器连接到一个ros master端口，实现不同机器之间消息的传递。这种方式有个潜在的缺陷，那就是整个网络中只能存在一个ros master，相当于只有一个服务器，所有机器发布和订阅的消息都必须经过该服务器，当数据量大时，可能会导致服务器负载过重（仅为猜测，未实际验证）。因此有必要探究一下能否实现两台机器之间分别运行自己的ros master，并">
+<meta property="og:updated_time" content="2016-08-26T16:05:11.420Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="ROS学习（十）ROS Network（2）">
+<meta name="twitter:description" content="上一篇所提到的ROS系统之间的网络通讯，是通过将所有机器连接到一个ros master端口，实现不同机器之间消息的传递。这种方式有个潜在的缺陷，那就是整个网络中只能存在一个ros master，相当于只有一个服务器，所有机器发布和订阅的消息都必须经过该服务器，当数据量大时，可能会导致服务器负载过重（仅为猜测，未实际验证）。因此有必要探究一下能否实现两台机器之间分别运行自己的ros master，并">
 
 
 
@@ -110,13 +113,7 @@
   };
 </script>
 
-  <title>
-  
-
-  
-    分类 | wengge987
-  
-</title>
+  <title> ROS学习（十）ROS Network（2） | wengge987 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -137,7 +134,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -270,16 +267,186 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-      <div class="category-all-page">
-        <div class="category-all-title">
-            目前共计 1 个分类
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ROS学习（十）ROS Network（2）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-08T14:27:00+08:00" content="2016-03-08">
+              2016-03-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ROS学习/" itemprop="url" rel="index">
+                    <span itemprop="name">ROS学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/08/ROS学习（十）ROS Network（2）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/08/ROS学习（十）ROS Network（2）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">本文总阅读量
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
         </div>
-        <div class="category-all">
-          <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ROS学习/">ROS学习</a><span class="category-list-count">10</span></li></ul>
-        </div>
-      </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>上一篇所提到的ROS系统之间的网络通讯，是通过将所有机器连接到一个ros master端口，实现不同机器之间消息的传递。这种方式有个潜在的缺陷，那就是整个网络中只能存在一个ros master，相当于只有一个服务器，所有机器发布和订阅的消息都必须经过该服务器，当数据量大时，可能会导致服务器负载过重（仅为猜测，未实际验证）。因此有必要探究一下能否实现两台机器之间分别运行自己的ros master，并且能够互相通信的方法。<br>从ROS wiki中找到了一下几种其他的通讯方案</p>
+<p><a href="http://wiki.ros.org/rocon_multimaster" target="_blank" rel="external">rocon_multimaster</a><br><a href="http://wiki.ros.org/multimaster_fkie" target="_blank" rel="external">multimaster_fkie</a><br><a href="http://wiki.ros.org/foreign_relay" target="_blank" rel="external">foreign_relay</a><br><a href="http://wiki.ros.org/wifi_comm" target="_blank" rel="external">wifi_comm</a><br><a href="http://wiki.ros.org/multimaster" target="_blank" rel="external">multimaster</a></p>
+<p>比较一下感觉最后一个方案最为便捷，只需要做一些简单的配置而不涉及代码的修改。从链接中下载multimaster程序包，放在catkin_ws下的src文件夹，编译程序包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/catkin_ws</div><div class="line">rosmake multimaster</div></pre></td></tr></table></figure>
+<p>修改config.yaml的参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">local_pubs: [local_topics_to_register_at_foreign_master]</div><div class="line">foreign_pubs: [foreign_topics_to_register_at_local_master]</div><div class="line">local_services: [local_services_to_register_at_foreign_master]</div><div class="line">foreign_services: [foreign_services_to_register_at_local_master]</div></pre></td></tr></table></figure>
+<p>将要发布的话题名称放在local_pubs中，不同的话题用“，”隔开，其他几个选项类似。</p>
+<p>看一下master.launch里的内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;launch&gt;</div><div class="line">  &lt;arg name=&quot;master&quot; /&gt;</div><div class="line">  &lt;node pkg=&quot;multimaster&quot; type=&quot;master_sync.py&quot; name=&quot;master_sync&quot; output=&quot;screen&quot;&gt; </div><div class="line">    &lt;param name=&quot;foreign_master&quot; value=&quot;http://$(arg master):11311&quot; /&gt;      </div><div class="line">    &lt;rosparam command=&quot;load&quot; file=&quot;$(find multimaster)/config.yaml&quot; /&gt;</div><div class="line">  &lt;/node&gt;</div><div class="line">&lt;/launch&gt;</div></pre></td></tr></table></figure></p>
+<p>可以知道外面只需要一个远程master的ip地址作为参数，可以直接在launch文件里修改，也可以在运行launch文件时输入。如果在/etc/hosts文件中已经添加了远程计算机的ip地址和主机名，这里的参数直接使用主机名即可。</p>
+<p>运行master.launch<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">roslaunch multimaster master.launch master:=remote_host</div></pre></td></tr></table></figure></p>
+<p>这样，在两台计算机上分别运行master.launch后，就可以在命令行中看到远程计算机的ip与端口，发布和接收的消息，通讯就成功了。这个方案还有个好处是与第一种方案没有冲突，也就意味着我们可以选择某两台计算机作为服务器， 每个服务器又可以各自管理几台计算机，这样就可以降低第一种方案中一个服务器的压力。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ROS/" rel="tag">#ROS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/08/ROS学习（九）ROS Network（1）/" rel="next" title="ROS学习（九）ROS Network（1）">
+                <i class="fa fa-chevron-left"></i> ROS学习（九）ROS Network（1）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/01/ROS学习（十一）常见问题及解决方案/" rel="prev" title="ROS学习（十一）常见问题及解决方案">
+                ROS学习（十一）常见问题及解决方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -288,6 +455,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/08/ROS学习（十）ROS Network（2）/"
+           data-title="ROS学习（十）ROS Network（2）" data-url="http://yoursite.com/2016/03/08/ROS学习（十）ROS Network（2）/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -307,8 +482,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/icon/avatar.jpg"
@@ -394,6 +578,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -513,6 +708,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

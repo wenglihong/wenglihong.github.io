@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ROS," />
 
 
 
@@ -86,13 +86,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="对于一些只订阅一个话题的简单节点来说，我们使用ros::spin()进入接收循环，每当有订阅的话题发布时，进入回调函数接收和处理消息数据。但是更多的时候，一个节点往往要接收和处理不同来源的数据，并且这些数据的产生频率也各不相同，当我们在一个回调函数里耗费太多时间时，会导致其他回调函数被阻塞，导致数据丢失。这种场合需要给一个节点开辟多个线程，保证数据流的畅通。为了观察不同话题的消息被阻塞的情况，可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS学习（六）ROS多线程订阅消息">
+<meta property="og:url" content="http://yoursite.com/2016/02/01/ROS学习（六）ROS多线程订阅消息/index.html">
 <meta property="og:site_name" content="wengge987">
-<meta property="og:updated_time" content="2016-08-26T15:16:22.841Z">
+<meta property="og:description" content="对于一些只订阅一个话题的简单节点来说，我们使用ros::spin()进入接收循环，每当有订阅的话题发布时，进入回调函数接收和处理消息数据。但是更多的时候，一个节点往往要接收和处理不同来源的数据，并且这些数据的产生频率也各不相同，当我们在一个回调函数里耗费太多时间时，会导致其他回调函数被阻塞，导致数据丢失。这种场合需要给一个节点开辟多个线程，保证数据流的畅通。为了观察不同话题的消息被阻塞的情况，可以">
+<meta property="og:updated_time" content="2016-08-26T16:03:49.992Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="ROS学习（六）ROS多线程订阅消息">
+<meta name="twitter:description" content="对于一些只订阅一个话题的简单节点来说，我们使用ros::spin()进入接收循环，每当有订阅的话题发布时，进入回调函数接收和处理消息数据。但是更多的时候，一个节点往往要接收和处理不同来源的数据，并且这些数据的产生频率也各不相同，当我们在一个回调函数里耗费太多时间时，会导致其他回调函数被阻塞，导致数据丢失。这种场合需要给一个节点开辟多个线程，保证数据流的畅通。为了观察不同话题的消息被阻塞的情况，可以">
 
 
 
@@ -110,13 +113,7 @@
   };
 </script>
 
-  <title>
-  
-
-  
-    分类 | wengge987
-  
-</title>
+  <title> ROS学习（六）ROS多线程订阅消息 | wengge987 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -137,7 +134,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -270,16 +267,179 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-      <div class="category-all-page">
-        <div class="category-all-title">
-            目前共计 1 个分类
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ROS学习（六）ROS多线程订阅消息
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-01T17:36:00+08:00" content="2016-02-01">
+              2016-02-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ROS学习/" itemprop="url" rel="index">
+                    <span itemprop="name">ROS学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/01/ROS学习（六）ROS多线程订阅消息/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/01/ROS学习（六）ROS多线程订阅消息/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">本文总阅读量
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
         </div>
-        <div class="category-all">
-          <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ROS学习/">ROS学习</a><span class="category-list-count">10</span></li></ul>
-        </div>
-      </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>对于一些只订阅一个话题的简单节点来说，我们使用ros::spin()进入接收循环，每当有订阅的话题发布时，进入回调函数接收和处理消息数据。但是更多的时候，一个节点往往要接收和处理不同来源的数据，并且这些数据的产生频率也各不相同，当我们在一个回调函数里耗费太多时间时，会导致其他回调函数被阻塞，导致数据丢失。这种场合需要给一个节点开辟多个线程，保证数据流的畅通。<br>为了观察不同话题的消息被阻塞的情况，可以参考以下实验代码<br><a href="https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_pub.cpp" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_pub.cpp</a><br><a href="https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_sub.cpp" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_sub.cpp</a><br>可以看到，发布程序中，以10hz的频率发布了chatter1和chatter2两个话题，在订阅程序中，回调函数1中加入了2s的延时，导致了回调函数2也只能2s才能接收到一个数据，为了是回调函数2能正常接收数据，我研究一下在一个ROS节点中开辟多个线程的方法。</p>
+<p>在ROS中，有两种方法可以在一个节点中开辟多个线程<br><strong>1.ros::MultiThreadedSpinner</strong><br>MultiThreadedSpinner类似于ros::spin()，在构造过程中可以指定它所用线程数，但如果不指定线程数或者线程数设置为0，它将在每个cpu内核开辟一个线程。<br>用法如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ros::MultiThreadedSpinner spinner(4); // Use 4 threads</div><div class="line">spinner.spin(); // spin() will not return until the node has been shutdown</div></pre></td></tr></table></figure></p>
+<p><strong>2.ros::AsyncSpinner</strong><br>AsyncSpinner比MultiThreadedSpinner更优，它有start() 和stop() 函数，并且在销毁的时候会自动停止。下面的用法等价于上面的MultiThreadedSpinner例子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ros::AsyncSpinner spinner(4); // Use 4 threads</div><div class="line">spinner.start();</div><div class="line">ros::waitForShutdown();</div></pre></td></tr></table></figure></p>
+<p>以上代码片参考了ROS wiki<br><a href="http://wiki.ros.org/roscpp/Overview/Callbacks%20and%20Spinning" target="_blank" rel="external">http://wiki.ros.org/roscpp/Overview/Callbacks%20and%20Spinning</a><br>完整的工程代码可以参考<br><a href="https://github.com/wenglihong/wlh_ros_demo/tree/master/multi_thread_demo" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/tree/master/multi_thread_demo</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ROS/" rel="tag">#ROS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/01/ROS学习（五）ROS消息传递——自定义消息/" rel="next" title="ROS学习（五）ROS消息传递——自定义消息">
+                <i class="fa fa-chevron-left"></i> ROS学习（五）ROS消息传递——自定义消息
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/01/ROS学习（七）ROS参数服务（1）/" rel="prev" title="ROS学习（七）ROS参数服务（1）">
+                ROS学习（七）ROS参数服务（1） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -288,6 +448,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/02/01/ROS学习（六）ROS多线程订阅消息/"
+           data-title="ROS学习（六）ROS多线程订阅消息" data-url="http://yoursite.com/2016/02/01/ROS学习（六）ROS多线程订阅消息/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -307,8 +475,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/icon/avatar.jpg"
@@ -394,6 +571,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -513,6 +701,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

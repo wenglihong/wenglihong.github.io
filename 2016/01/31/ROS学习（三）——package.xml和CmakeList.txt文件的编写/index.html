@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ROS," />
 
 
 
@@ -86,13 +86,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="package.xml和CmakeList.txt文件是生成程序包和节点的重要配置文件，在开始编写我们的程序之前，对这两个文件的编写需要有一定的了解。
+1.package.xml。package.xml实际上是一个程序包的描述文件，以下参考ros百科入门教程中的一个xml文件来解读。
+12345678910111213141516171819202122&amp;lt;?xml version=&amp;quot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS学习（三）——package.xml和CmakeList.txt文件的编写">
+<meta property="og:url" content="http://yoursite.com/2016/01/31/ROS学习（三）——package.xml和CmakeList.txt文件的编写/index.html">
 <meta property="og:site_name" content="wengge987">
-<meta property="og:updated_time" content="2016-08-26T15:16:22.841Z">
+<meta property="og:description" content="package.xml和CmakeList.txt文件是生成程序包和节点的重要配置文件，在开始编写我们的程序之前，对这两个文件的编写需要有一定的了解。
+1.package.xml。package.xml实际上是一个程序包的描述文件，以下参考ros百科入门教程中的一个xml文件来解读。
+12345678910111213141516171819202122&amp;lt;?xml version=&amp;quot">
+<meta property="og:updated_time" content="2016-08-26T16:02:38.552Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="ROS学习（三）——package.xml和CmakeList.txt文件的编写">
+<meta name="twitter:description" content="package.xml和CmakeList.txt文件是生成程序包和节点的重要配置文件，在开始编写我们的程序之前，对这两个文件的编写需要有一定的了解。
+1.package.xml。package.xml实际上是一个程序包的描述文件，以下参考ros百科入门教程中的一个xml文件来解读。
+12345678910111213141516171819202122&amp;lt;?xml version=&amp;quot">
 
 
 
@@ -110,13 +119,7 @@
   };
 </script>
 
-  <title>
-  
-
-  
-    分类 | wengge987
-  
-</title>
+  <title> ROS学习（三）——package.xml和CmakeList.txt文件的编写 | wengge987 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -137,7 +140,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -270,16 +273,191 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-      <div class="category-all-page">
-        <div class="category-all-title">
-            目前共计 1 个分类
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ROS学习（三）——package.xml和CmakeList.txt文件的编写
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-31T12:51:00+08:00" content="2016-01-31">
+              2016-01-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ROS学习/" itemprop="url" rel="index">
+                    <span itemprop="name">ROS学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/31/ROS学习（三）——package.xml和CmakeList.txt文件的编写/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/31/ROS学习（三）——package.xml和CmakeList.txt文件的编写/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">本文总阅读量
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
         </div>
-        <div class="category-all">
-          <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ROS学习/">ROS学习</a><span class="category-list-count">10</span></li></ul>
-        </div>
-      </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>package.xml和CmakeList.txt文件是生成程序包和节点的重要配置文件，在开始编写我们的程序之前，对这两个文件的编写需要有一定的了解。</p>
+<p><strong>1.package.xml。</strong><br>package.xml实际上是一个程序包的描述文件，以下参考ros百科入门教程中的一个xml文件来解读。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</div><div class="line">&lt;package&gt;</div><div class="line">  &lt;name&gt;beginner_tutorials&lt;/name&gt;</div><div class="line">  &lt;version&gt;0.1.0&lt;/version&gt;</div><div class="line">  &lt;description&gt;The beginner_tutorials package&lt;/description&gt;</div><div class="line"></div><div class="line">  &lt;maintainer email=&quot;you@yourdomain.tld&quot;&gt;Your Name&lt;/maintainer&gt;</div><div class="line">  &lt;license&gt;BSD&lt;/license&gt;</div><div class="line">  &lt;url type=&quot;website&quot;&gt;http://wiki.ros.org/beginner_tutorials&lt;/url&gt;</div><div class="line">  &lt;author email=&quot;you@yourdomain.tld&quot;&gt;Jane Doe&lt;/author&gt;</div><div class="line"></div><div class="line">  &lt;buildtool_depend&gt;catkin&lt;/buildtool_depend&gt;</div><div class="line"></div><div class="line">  &lt;build_depend&gt;roscpp&lt;/build_depend&gt;</div><div class="line">  &lt;build_depend&gt;rospy&lt;/build_depend&gt;</div><div class="line">  &lt;build_depend&gt;std_msgs&lt;/build_depend&gt;</div><div class="line"></div><div class="line">  &lt;run_depend&gt;roscpp&lt;/run_depend&gt;</div><div class="line">  &lt;run_depend&gt;rospy&lt;/run_depend&gt;</div><div class="line">  &lt;run_depend&gt;std_msgs&lt;/run_depend&gt;</div><div class="line"></div><div class="line">&lt;/package&gt;</div></pre></td></tr></table></figure>
+<p>在描述文件中，有几个重要的参数需要注意，出错将导致编译无法通过，一个是name，决定了编译出的程序包的名称，另外是build_depend和run_depend，它们指明了程序包编译和运行的依赖项，通常是所用到的库文件的名称。这三个参数需要根据自己的需要修改，其他的参数更多的是程序维护这的信息。<br>实际上，上面的xml文件是一种旧的书写格式，现在ros支持新的书写格式，与第一中格式的差别不大，并且ros对两种xml文件格式都是兼容的，新格式的xml文件可以参照下面的写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;package format=&quot;2&quot;&gt;</div><div class="line">  &lt;name&gt;node_example&lt;/name&gt;</div><div class="line">  &lt;version&gt;0.0.1&lt;/version&gt;</div><div class="line">  &lt;description&gt;</div><div class="line">    Example.</div><div class="line">  &lt;/description&gt;</div><div class="line">  &lt;author&gt;Thomas Denewiler&lt;/author&gt;</div><div class="line">  &lt;maintainer email=&quot;tdenewiler@gmail.com&quot;&gt;Thomas Denewiler&lt;/maintainer&gt;</div><div class="line">  &lt;license&gt;BSD&lt;/license&gt;</div><div class="line">  &lt;url&gt;https://github.com/tdenewiler/node_example&lt;/url&gt;</div><div class="line"></div><div class="line">  &lt;buildtool_depend&gt;catkin&lt;/buildtool_depend&gt;</div><div class="line">  &lt;build_depend&gt;message_generation&lt;/build_depend&gt;</div><div class="line"></div><div class="line">  &lt;depend&gt;roscpp&lt;/depend&gt;</div><div class="line">  &lt;depend&gt;rospy&lt;/depend&gt;</div><div class="line">  &lt;depend&gt;std_msgs&lt;/depend&gt;</div><div class="line">&lt;/package&gt;</div></pre></td></tr></table></figure>
+<p>可以看到，新版本相对旧版本的区别主要在于不区分build_depend和run_depend，更多的关于两种package.xml描述文件以及它们的区别，可以参考下面的网页<br><a href="http://wiki.ros.org/catkin/package.xml" target="_blank" rel="external">http://wiki.ros.org/catkin/package.xml</a><br><a href="http://wiki.ros.org/cn/ROS/Tutorials/CreatingPackage" target="_blank" rel="external">http://wiki.ros.org/cn/ROS/Tutorials/CreatingPackage</a></p>
+<p><strong>2.CmakeList.txt</strong><br>下面来研究一下CmakeList.txt文件的编写方式，先预览一下一个完整的需要包括的内容<br>cmake_minimum_required()<br>要求的CMake最低版本<br>project()<br>程序包的名称<br>find_package()<br>编译依赖的程序包<br>add_message_files(), add_service_files(), add_action_files()<br>添加消息、服务或响应文件<br>generate_messages()<br>生成消息、服务或响应文件<br>catkin_package()<br>catkin程序包<br>add_library()/add_executable()/target_link_libraries()<br>添加库文件，可执行文件，链接库文件<br>catkin_add_gtest()<br>添加测试单元<br>install()<br>安装</p>
+<p>前两个参数都很好理解，不再赘述。</p>
+<p>find_package()作用是指定编译工程需要的其他程序包，这个函数的参数至少要包括catkin REQUIRED，我们来看一个典型的find_package()包含的内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">find_package(catkin REQUIRED COMPONENTS 	</div><div class="line">			 roscpp </div><div class="line">			 std_msgs</div><div class="line">			 message_generation </div><div class="line">		  	 sensor_msgs</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>catkin_package()是catkin提供的CMake宏，对生成的pkg和CMake文件进行配置，如果去掉编译也能通过，但是配置会发生变化，比如生成的可执行文件会在工作空间中的build文件夹中而不是devel/lib文件夹中，这样可能导致的一个后果是无法使用rosrun指令来运行可执行文件。</p>
+<p>add_message_files()和generate_messages()是在使用用户自定义消息时需要添加，这部分可以在学习添加自定义消息时再深入学习。</p>
+<p>add_executable()<br>指定要编译的可执行文件，例如<br>add_executable(myNode src/main.cpp src/file1.cpp src/file2.cpp)<br>上面的语句将调用src/main.cpp，src/file1.cpp和src/file2.cpp生成名为myNode的目标可执行文件，生成的可执行文件就是我们说的节点。</p>
+<p>add_library()<br>生成库文件</p>
+<p>target_link_libraries()<br>指定所生成的可执行文件所链接的库文件，通常写在add_executable()之后。一般来说，要生成一个ros节点，必须添加catkin_LIBRARIES，例如<br>target_link_libraries(myNode  ${catkin_LIBRARIES})</p>
+<p>install()<br>install()是一个可选项，通常在程序编译完后，目标可执行文件被放在工作空间的devel文件夹中，但通常我们希望把目标放在系统中，这样程序包就可以作为被其他人使用，作为其他程序的依赖项。具体做法可以参考ros wiki <a href="http://wiki.ros.org/catkin/CMakeLists.txt" target="_blank" rel="external">http://wiki.ros.org/catkin/CMakeLists.txt</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ROS/" rel="tag">#ROS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/30/ROS学习（二）——文件系统/" rel="next" title="ROS学习（二）——ROS文件系统">
+                <i class="fa fa-chevron-left"></i> ROS学习（二）——ROS文件系统
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/31/ROS学习（四）ROS消息传递——std_msgs/" rel="prev" title="ROS学习（四）ROS消息传递——std_msgs">
+                ROS学习（四）ROS消息传递——std_msgs <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -288,6 +466,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/31/ROS学习（三）——package.xml和CmakeList.txt文件的编写/"
+           data-title="ROS学习（三）——package.xml和CmakeList.txt文件的编写" data-url="http://yoursite.com/2016/01/31/ROS学习（三）——package.xml和CmakeList.txt文件的编写/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -307,8 +493,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/icon/avatar.jpg"
@@ -394,6 +589,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -513,6 +719,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ROS," />
 
 
 
@@ -86,13 +86,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行了一个ros master，ros master相当于一个服务器，所有节点都可以通过ros master发布消息和订阅消息，还包括发布和订阅服务，以及参数服务，只有连接在相同ros master下的节点才能互相通信。怎样才能知道节点是运行在哪个master下的呢？实际上ROS中默认一个机器上只运行一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS学习（九）ROS Network（1）">
+<meta property="og:url" content="http://yoursite.com/2016/03/08/ROS学习（九）ROS Network（1）/index.html">
 <meta property="og:site_name" content="wengge987">
-<meta property="og:updated_time" content="2016-08-26T15:16:22.841Z">
+<meta property="og:description" content="我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行了一个ros master，ros master相当于一个服务器，所有节点都可以通过ros master发布消息和订阅消息，还包括发布和订阅服务，以及参数服务，只有连接在相同ros master下的节点才能互相通信。怎样才能知道节点是运行在哪个master下的呢？实际上ROS中默认一个机器上只运行一">
+<meta property="og:updated_time" content="2016-08-26T16:04:52.148Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="ROS学习（九）ROS Network（1）">
+<meta name="twitter:description" content="我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行了一个ros master，ros master相当于一个服务器，所有节点都可以通过ros master发布消息和订阅消息，还包括发布和订阅服务，以及参数服务，只有连接在相同ros master下的节点才能互相通信。怎样才能知道节点是运行在哪个master下的呢？实际上ROS中默认一个机器上只运行一">
 
 
 
@@ -110,13 +113,7 @@
   };
 </script>
 
-  <title>
-  
-
-  
-    分类 | wengge987
-  
-</title>
+  <title> ROS学习（九）ROS Network（1） | wengge987 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -137,7 +134,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -270,16 +267,180 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-      <div class="category-all-page">
-        <div class="category-all-title">
-            目前共计 1 个分类
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ROS学习（九）ROS Network（1）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-08T12:31:00+08:00" content="2016-03-08">
+              2016-03-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ROS学习/" itemprop="url" rel="index">
+                    <span itemprop="name">ROS学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/08/ROS学习（九）ROS Network（1）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/08/ROS学习（九）ROS Network（1）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">本文总阅读量
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
         </div>
-        <div class="category-all">
-          <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ROS学习/">ROS学习</a><span class="category-list-count">10</span></li></ul>
-        </div>
-      </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行了一个ros master，ros master相当于一个服务器，所有节点都可以通过ros master发布消息和订阅消息，还包括发布和订阅服务，以及参数服务，只有连接在相同ros master下的节点才能互相通信。<br>怎样才能知道节点是运行在哪个master下的呢？实际上ROS中默认一个机器上只运行一个ros master，其运行的端口默认为<a href="http://localhost:11311,这个端口默认值存于ROS环境变量ROS_MASTER_URI中，可以通过下面指令查看检验，或者在运行roscore的命令行输出中也可以看到" target="_blank" rel="external">http://localhost:11311,这个端口默认值存于ROS环境变量ROS_MASTER_URI中，可以通过下面指令查看检验，或者在运行roscore的命令行输出中也可以看到</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo $ROS_MASTER_URI</div></pre></td></tr></table></figure></p>
+<p>还有其他一些ROS环境变量，可以了解一下<a href="http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH" target="_blank" rel="external">http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH</a><br>从上面的分析可以看出，即使是不同机器上的程序节点，只要通过网络连接到ros master的运行端口，就能实现消息的发布和订阅，并且发布的消息就能被所有连接到ros master端口的机器和节点所订阅，同样也可以订阅连接到这个端口的其他节点所发布的消息。有了这样的通讯方式，我们完全不用往我们的程序节点中添加任何与通讯相关的代码，就能订阅到其他机器发布的话题，与获取本机上其他节点发布的话题没有任何区别。<br>下面来梳理一下实现ROS多机通讯的实现方法。</p>
+<p> <strong>1. 保证多机之间网络连接无误</strong><br>     在/etc/hosts中添加想要连接的那台机器的ip地址和主机名称，使用ping指令检查本机的网络连接和其他机器的网络连接。这里需要注意，如果不止两台机器连接，需要把所有需要和本机通讯的机器的ip和主机名添加到hosts文件里。<br> <strong>2. 修改ROS环境变量</strong><br>与网络通讯相关的ROS环境变量主要有3个，分别是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ROS_MASTER_URI</div><div class="line">ROS_IP</div><div class="line">ROS_HOSTNAME</div></pre></td></tr></table></figure></p>
+<p>前面已经提到，这种通讯方式只能运行一个ros master，因此，选定一台机器作为master，将所有机器的ROS_MASTER_URI设置为改机器的ROS_MASTER_URI值，举个例子，我的主机名为wlh，则我的ROS_MASTER_URI应该设置为<a href="http://wlh:11311,则所有连接到我这个ros" target="_blank" rel="external">http://wlh:11311,则所有连接到我这个ros</a> master的机器上的ROS_MASTER_URI都应该设置为<a href="http://wlh:11311，设置环境变量值用export指令，ROS_IP和ROS_HOSTNAME则分别是本机的IP地址和主机名。" target="_blank" rel="external">http://wlh:11311，设置环境变量值用export指令，ROS_IP和ROS_HOSTNAME则分别是本机的IP地址和主机名。</a><br>    <strong>3. 简单测试</strong><br> 为了测试通讯是否成功，只要用rostopic pub指令在一台机器上发布一条消息，如果通讯成功，其他所有和该机器连接的机器上，就能使用rostopic echo接收到消息了。</p>
+<p>参考链接<br><a href="http://wiki.ros.org/ROS/Tutorials/MultipleMachines" target="_blank" rel="external">http://wiki.ros.org/ROS/Tutorials/MultipleMachines</a><br><a href="http://wiki.ros.org/ROS/NetworkSetup" target="_blank" rel="external">http://wiki.ros.org/ROS/NetworkSetup</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ROS/" rel="tag">#ROS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/01/ROS学习（八）ROS参数服务（2）/" rel="next" title="ROS学习（八）ROS参数服务（2）">
+                <i class="fa fa-chevron-left"></i> ROS学习（八）ROS参数服务（2）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/08/ROS学习（十）ROS Network（2）/" rel="prev" title="ROS学习（十）ROS Network（2）">
+                ROS学习（十）ROS Network（2） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -288,6 +449,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/08/ROS学习（九）ROS Network（1）/"
+           data-title="ROS学习（九）ROS Network（1）" data-url="http://yoursite.com/2016/03/08/ROS学习（九）ROS Network（1）/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -307,8 +476,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/icon/avatar.jpg"
@@ -394,6 +572,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -513,6 +702,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

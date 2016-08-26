@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ROS," />
 
 
 
@@ -86,13 +86,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="学习ROS的文件系统，要了解几个重要的概念，主要包括1.工作空间（workspace）2.程序包（package）3.节点（node）
+1.工作空间
+在ROS入门教程中，在开始所有的编程工作之前，首先是要创建一个catkin_ws，即catkin工作空间，需要创建这样一个工作空间的原因与这个catkin工具有关。    Catkin is a collection of CMake macros">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS学习（二）——ROS文件系统">
+<meta property="og:url" content="http://yoursite.com/2016/01/30/ROS学习（二）——文件系统/index.html">
 <meta property="og:site_name" content="wengge987">
-<meta property="og:updated_time" content="2016-08-26T15:16:22.841Z">
+<meta property="og:description" content="学习ROS的文件系统，要了解几个重要的概念，主要包括1.工作空间（workspace）2.程序包（package）3.节点（node）
+1.工作空间
+在ROS入门教程中，在开始所有的编程工作之前，首先是要创建一个catkin_ws，即catkin工作空间，需要创建这样一个工作空间的原因与这个catkin工具有关。    Catkin is a collection of CMake macros">
+<meta property="og:updated_time" content="2016-08-26T16:01:49.800Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="ROS学习（二）——ROS文件系统">
+<meta name="twitter:description" content="学习ROS的文件系统，要了解几个重要的概念，主要包括1.工作空间（workspace）2.程序包（package）3.节点（node）
+1.工作空间
+在ROS入门教程中，在开始所有的编程工作之前，首先是要创建一个catkin_ws，即catkin工作空间，需要创建这样一个工作空间的原因与这个catkin工具有关。    Catkin is a collection of CMake macros">
 
 
 
@@ -110,13 +119,7 @@
   };
 </script>
 
-  <title>
-  
-
-  
-    分类 | wengge987
-  
-</title>
+  <title> ROS学习（二）——ROS文件系统 | wengge987 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -137,7 +140,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -270,16 +273,185 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-      <div class="category-all-page">
-        <div class="category-all-title">
-            目前共计 1 个分类
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ROS学习（二）——ROS文件系统
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-30T22:58:00+08:00" content="2016-01-30">
+              2016-01-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ROS学习/" itemprop="url" rel="index">
+                    <span itemprop="name">ROS学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/30/ROS学习（二）——文件系统/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/30/ROS学习（二）——文件系统/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">本文总阅读量
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
         </div>
-        <div class="category-all">
-          <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ROS学习/">ROS学习</a><span class="category-list-count">10</span></li></ul>
-        </div>
-      </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>学习ROS的文件系统，要了解几个重要的概念，主要包括<br>1.工作空间（workspace）<br>2.程序包（package）<br>3.节点（node）</p>
+<p>1.工作空间</p>
+<p>在ROS入门教程中，在开始所有的编程工作之前，首先是要创建一个catkin_ws，即catkin工作空间，需要创建这样一个工作空间的原因与这个catkin工具有关。<br>    Catkin is a collection of CMake macros and associated code used to build packages used in ROS.<a href="http://docs.ros.org/api/catkin/html/" target="_blank" rel="external">参考网页</a><br>    就是说，catkin是一些cmake宏的集合，以及用于编译ros程序包的相关代码，简单理解它就是一个编译程序的工具，具体实现上可以参看ros安装目录下的catkin_make的python脚本，实际上catkin_make的工作就是确认各种编译需要的文件的存在性以及路径，解析程序包之间的依赖关系等等，简单了解即可。<br>    正是由于ros编译程序采用了catkin_make工具，因此我们需要将创建的程序包放在catkin工作空间中，这样就简化了编译程序的工作，省去了编写编译文件中的许多工作量。<br>更多关于catkin工作空间的资料，可以参考<br><a href="http://wiki.ros.org/cn/ROS/Tutorials/CreatingPackage" target="_blank" rel="external">http://wiki.ros.org/cn/ROS/Tutorials/CreatingPackage</a><br><a href="http://docs.ros.org/api/catkin/html/" target="_blank" rel="external">http://docs.ros.org/api/catkin/html/</a><br>/opt/ros/indigo/bin/catkin_make</p>
+<p>2.程序包</p>
+<p>程序包的概念比较容易理解，可以将它视为一个解决方案，我们可以将同类功能的程序都放在一个程序包中，比如添加一个新的传感器驱动，我们就可以将它作为一个程序包。在ros中，创建一个程序包非常简单，在工作空间的src文件夹中新建一个文件夹，在该文件夹下添加src文件夹，include文件夹，一个CmakeList.txt文件以及package.xml文件。文件树的结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">workspace_folder/        -- WORKSPACE</div><div class="line">  src/                   -- SOURCE SPACE</div><div class="line">    CMakeLists.txt       -- &apos;Toplevel&apos; CMake file, provided by catkin</div><div class="line">    package_1/</div><div class="line">	  src/</div><div class="line">	  include/</div><div class="line">      CMakeLists.txt     -- CMakeLists.txt file for package_1</div><div class="line">      package.xml        -- Package manifest for package_1</div><div class="line">    ...</div><div class="line">    package_n/</div><div class="line">	  src/</div><div class="line">	  include/</div><div class="line">      CMakeLists.txt     -- CMakeLists.txt file for package_n</div><div class="line">      package.xml        -- Package manifest for package_n</div></pre></td></tr></table></figure>
+<p>需要注意的是，每个package文件夹下只能有一个描述文件，也只能生产一个程序包，但是可以将多个程序包放在一个元程序包的文件夹下。举个例子，一个机器人可能配置了许多传感器，每个传感器的驱动都是一个程序包，而所有传感器的程序包可以放在一个我们命名位drivers的元程序包中，用文件树描述如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">workspace_folder/        </div><div class="line">  src/                   </div><div class="line">    CMakeLists.txt       </div><div class="line">	drivers/</div><div class="line">	  driver_1/</div><div class="line">	    src/</div><div class="line">	    include/</div><div class="line">        CMakeLists.txt    </div><div class="line">        package.xml        </div><div class="line">    ...</div><div class="line">      driver_n/</div><div class="line">	    src/</div><div class="line">	    include/</div><div class="line">        CMakeLists.txt     </div><div class="line">        package.xml</div></pre></td></tr></table></figure>
+<p>这样组织文件带来的好处是使文件系统看起来更加简洁，可以将几个大类的功能分别放在相应的元程序包中，而不会使各种程序包放在一起显得杂乱无章。例如，一个机器人系统的软件系统包含驱动，感知，规划，显示等几个部分，我们就可以这样来组织文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">workspace_folder/        </div><div class="line">  src/                   </div><div class="line">    CMakeLists.txt       </div><div class="line">	drivers/</div><div class="line">	perception/</div><div class="line">	planning/</div><div class="line">	visualization/</div></pre></td></tr></table></figure>
+<p>关于package.xml文件和CmakeList.txt文件的具体内容和编写方式，放到下篇文章中详细描述。</p>
+<p>3.节点</p>
+<p>一个节点其实只不过是ROS程序包中的一个可执行文件。ROS节点可以使用topic与其他节点通信。节点可以发布或接收一个话题。节点也可以提供或使用某种服务。<br>我们最主要的工作就是要编写节点程序，这里就回到了我们熟悉的编写程序的部分，要编写源文件，头文件，在程序中定义节点的输入输出接口，执行算法，实现逻辑判断等等。编写完节点程序，要让该节点程序成为一个可执行文件，需要在CmakeList.txt添加相应的命令，这个等下篇细讲。</p>
+<p>总结一下，本文主要介绍了ros文件系统的组织形式，包括工作空间，程序包和节点，工作空间的创建可以说是一劳永逸，主要目的就是为了使用catkin工具，程序包就是一个解决方案，每次新建时都要用描述文件来配置，节点是一个可执行文件，CmakeList.txt用来对程序包和节点进行编译。<br>另外，ros wiki上关于文件系统的介绍多是关于文件系统指令的使用，rospack , roscd , rosls等，可以了解一下<br><a href="http://wiki.ros.org/cn/ROS/Tutorials/NavigatingTheFilesystem" target="_blank" rel="external">http://wiki.ros.org/cn/ROS/Tutorials/NavigatingTheFilesystem</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ROS/" rel="tag">#ROS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/31/ROS学习（三）——package.xml和CmakeList.txt文件的编写/" rel="prev" title="ROS学习（三）——package.xml和CmakeList.txt文件的编写">
+                ROS学习（三）——package.xml和CmakeList.txt文件的编写 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -288,6 +460,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/30/ROS学习（二）——文件系统/"
+           data-title="ROS学习（二）——ROS文件系统" data-url="http://yoursite.com/2016/01/30/ROS学习（二）——文件系统/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -307,8 +487,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/icon/avatar.jpg"
@@ -394,6 +583,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -513,6 +713,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

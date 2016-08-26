@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ROS," />
 
 
 
@@ -86,13 +86,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="如何多次启动相同名称的节点
+
+这个问题一般出现的场合有几种，需要用一份驱动程序打开多个相同的传感器，或者不同计算机通过协作，可能有节点和话题的名称产生冲突。    对于这种情况，ROS给出了很简便的解决方案，要做的只是采用launch文件启动节点，在launch文件中使用名字空间，将一个节点用两个同的节点名称来启动。例如我们有一个GPS传感器的驱动程序节点，节点名称为GPS_Driver，如果我">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS学习（十一）常见问题及解决方案">
+<meta property="og:url" content="http://yoursite.com/2016/05/01/ROS学习（十一）常见问题及解决方案/index.html">
 <meta property="og:site_name" content="wengge987">
-<meta property="og:updated_time" content="2016-08-26T15:16:22.841Z">
+<meta property="og:description" content="如何多次启动相同名称的节点
+
+这个问题一般出现的场合有几种，需要用一份驱动程序打开多个相同的传感器，或者不同计算机通过协作，可能有节点和话题的名称产生冲突。    对于这种情况，ROS给出了很简便的解决方案，要做的只是采用launch文件启动节点，在launch文件中使用名字空间，将一个节点用两个同的节点名称来启动。例如我们有一个GPS传感器的驱动程序节点，节点名称为GPS_Driver，如果我">
+<meta property="og:updated_time" content="2016-08-26T16:05:29.704Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
+<meta name="twitter:title" content="ROS学习（十一）常见问题及解决方案">
+<meta name="twitter:description" content="如何多次启动相同名称的节点
+
+这个问题一般出现的场合有几种，需要用一份驱动程序打开多个相同的传感器，或者不同计算机通过协作，可能有节点和话题的名称产生冲突。    对于这种情况，ROS给出了很简便的解决方案，要做的只是采用launch文件启动节点，在launch文件中使用名字空间，将一个节点用两个同的节点名称来启动。例如我们有一个GPS传感器的驱动程序节点，节点名称为GPS_Driver，如果我">
 
 
 
@@ -110,13 +119,7 @@
   };
 </script>
 
-  <title>
-  
-
-  
-    分类 | wengge987
-  
-</title>
+  <title> ROS学习（十一）常见问题及解决方案 | wengge987 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -137,7 +140,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -270,16 +273,184 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-      <div class="category-all-page">
-        <div class="category-all-title">
-            目前共计 1 个分类
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ROS学习（十一）常见问题及解决方案
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-01T21:32:00+08:00" content="2016-05-01">
+              2016-05-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ROS学习/" itemprop="url" rel="index">
+                    <span itemprop="name">ROS学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/01/ROS学习（十一）常见问题及解决方案/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/01/ROS学习（十一）常见问题及解决方案/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">本文总阅读量
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
         </div>
-        <div class="category-all">
-          <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ROS学习/">ROS学习</a><span class="category-list-count">10</span></li></ul>
-        </div>
-      </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><strong>如何多次启动相同名称的节点</strong></li>
+</ul>
+<p>这个问题一般出现的场合有几种，需要用一份驱动程序打开多个相同的传感器，或者不同计算机通过协作，可能有节点和话题的名称产生冲突。<br>    对于这种情况，ROS给出了很简便的解决方案，要做的只是采用launch文件启动节点，在launch文件中使用名字空间，将一个节点用两个同的节点名称来启动。例如我们有一个GPS传感器的驱动程序节点，节点名称为GPS_Driver，如果我们需要启动一个GPS传感器时，我们只需要写这样一个启动文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;launch&gt;</div><div class="line">    &lt;node ns=&quot;rtk&quot; pkg=&quot;GPS_Driver&quot; type=&quot;GPS_Driver&quot; name=&quot;GPS_Driver&quot;&gt;</div><div class="line">    &lt;param name=&quot;port&quot; value=&quot;/dev/ttyS0&quot; /&gt;</div><div class="line">    &lt;/node&gt;</div><div class="line"></div><div class="line">	&lt;node ns=&quot;garmin&quot; pkg=&quot;GPS_Driver&quot; type=&quot;GPS_Driver&quot; name=&quot;GPS_Driver&quot;&gt;</div><div class="line">    &lt;param name=&quot;port&quot; value=&quot;/dev/ttyS1&quot; /&gt;</div><div class="line">    &lt;/node&gt;</div><div class="line">&lt;/launch&gt;</div></pre></td></tr></table></figure></p>
+<p>这样，使用同一份驱动程序，通过配置两个不同的串口，就能够启动两个不同的GPS传感器。运行上面的launch文件，启动的两个GPS_Driver将被冠上’ns’指定的名字空间，使用命令rosnode list可以看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rtk/GPS_Driver</div><div class="line">garmin/GPS_Driver</div></pre></td></tr></table></figure>
+<p>需要注意的是，这样的方式启动节点后，该节点发布的话题也将被加上名字空间，因此可能会导致有的接收节点无法接收正确的话题消息，可以使用remap消息名称的方式来解决。例如，rtk gps原先的话题名字为/fix，加上名字空间变为/rtk/fix，有个名为“process_rtk_gps”的需要接收rtk gps的定位信息，但是该程序源代码中接收的话题为/fix，这时候我们不需重新修改和编译将该程序，只要在启动该文件时remap消息名称即可，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;launch&gt;</div><div class="line">    &lt;node pkg=&quot;process_rtk_gps&quot; type=&quot;process_rtk_gps&quot; name=&quot;process_rtk_gps&quot;&gt;</div><div class="line">    &lt;remap from=&quot;rtk/fix&quot; to=&quot;/fix&quot;/&gt;</div><div class="line">    &lt;/node&gt;</div><div class="line">&lt;/launch&gt;</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><strong>更改msg文件后重新编译不起作用</strong></li>
+</ul>
+<p>这个问题一般在这两种情况下出现，一是直接从其他计算机上拷贝的程序包放在本地计算机上编译时，二是对于本地已经写好的程序修改了msg文件，不起作用的意思是原本正常使用的msg文件失效了，就算重新编译，源程序也无法正确使用新编译的msg文件，例如原先有个程序节点发布了自定义消息my_msg，后来更改了my_msg.msg里的内容，重新编译后，该节点发布的my_msg使用命令rostopic echo 就无法输出了。<br>    这中情况的解决方案是，注释掉CMakeList.txt中生成可执行文件的部分，先编译msg文件，再将源程序编译成可执行文件。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ROS/" rel="tag">#ROS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/08/ROS学习（十）ROS Network（2）/" rel="next" title="ROS学习（十）ROS Network（2）">
+                <i class="fa fa-chevron-left"></i> ROS学习（十）ROS Network（2）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -288,6 +459,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/01/ROS学习（十一）常见问题及解决方案/"
+           data-title="ROS学习（十一）常见问题及解决方案" data-url="http://yoursite.com/2016/05/01/ROS学习（十一）常见问题及解决方案/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -307,8 +486,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/icon/avatar.jpg"
@@ -394,6 +582,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -513,6 +712,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
