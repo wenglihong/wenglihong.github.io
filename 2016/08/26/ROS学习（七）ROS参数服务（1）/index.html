@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>ROS学习（七）ROS参数服务（1） | wengge987</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在任何机器人系统中，参数传递都是一个十分重要的功能，不论是传感器的设置，还是控制参数的调整，都需要留出方便的参数调试接口，有的参数只在启动程序启动时更改，有的参数却希望在运行时能够被动态修改，在ROS中，可以通过参数服务来实现上面的想法。
+首先熟悉一下rosparam指令，用rosparam -h可以获得如下帮助1234567Commands:	rosparam set	set parameter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS学习（七）ROS参数服务（1）">
+<meta property="og:url" content="http://yoursite.com/2016/08/26/ROS学习（七）ROS参数服务（1）/index.html">
+<meta property="og:site_name" content="wengge987">
+<meta property="og:description" content="在任何机器人系统中，参数传递都是一个十分重要的功能，不论是传感器的设置，还是控制参数的调整，都需要留出方便的参数调试接口，有的参数只在启动程序启动时更改，有的参数却希望在运行时能够被动态修改，在ROS中，可以通过参数服务来实现上面的想法。
+首先熟悉一下rosparam指令，用rosparam -h可以获得如下帮助1234567Commands:	rosparam set	set parameter">
+<meta property="og:updated_time" content="2016-08-26T03:28:51.324Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ROS学习（七）ROS参数服务（1）">
+<meta name="twitter:description" content="在任何机器人系统中，参数传递都是一个十分重要的功能，不论是传感器的设置，还是控制参数的调整，都需要留出方便的参数调试接口，有的参数只在启动程序启动时更改，有的参数却希望在运行时能够被动态修改，在ROS中，可以通过参数服务来实现上面的想法。
+首先熟悉一下rosparam指令，用rosparam -h可以获得如下帮助1234567Commands:	rosparam set	set parameter">
+  
+    <link rel="alternative" href="/atom.xml" title="wengge987" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="0" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wenglihong</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ROS/" style="font-size: 10px;">ROS</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wenglihong</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img lazy-src="0" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wenglihong</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-ROS学习（七）ROS参数服务（1）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/26/ROS学习（七）ROS参数服务（1）/" class="article-date">
+  	<time datetime="2016-08-25T16:00:00.000Z" itemprop="datePublished">2016-08-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ROS学习（七）ROS参数服务（1）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ROS/">ROS</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/ROS学习/">ROS学习</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在任何机器人系统中，参数传递都是一个十分重要的功能，不论是传感器的设置，还是控制参数的调整，都需要留出方便的参数调试接口，有的参数只在启动程序启动时更改，有的参数却希望在运行时能够被动态修改，在ROS中，可以通过参数服务来实现上面的想法。</p>
+<p>首先熟悉一下rosparam指令，用rosparam -h可以获得如下帮助<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Commands:</div><div class="line">	rosparam set	set parameter</div><div class="line">	rosparam get	get parameter</div><div class="line">	rosparam load	load parameters from file</div><div class="line">	rosparam dump	dump parameters to file</div><div class="line">	rosparam delete	delete parameter</div><div class="line">	rosparam list	list parameter names</div></pre></td></tr></table></figure></p>
+<p>用上面几个指令可以方便地用命令行获得或更改参数。</p>
+<p>下面通过一段简单的代码片段来熟悉一下如何向ROS程序传递参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">#include &lt;ros/ros.h&gt;</div><div class="line"></div><div class="line">using namespace  std;</div><div class="line"></div><div class="line">int main(int argc, char** argv)</div><div class="line">&#123;</div><div class="line">    ros::init(argc, argv, &quot;param_demo&quot;);</div><div class="line">    ros::NodeHandle n;</div><div class="line">    ros::NodeHandle pn(&quot;~my_namespace&quot;);</div><div class="line">  </div><div class="line">    string s;</div><div class="line">    int num;</div><div class="line">    </div><div class="line">    n.param&lt;string&gt;(&quot;string_param&quot;, s, &quot;default_string&quot;);</div><div class="line">    pn.param&lt;int&gt;(&quot;int_param&quot;, num, 2333);</div><div class="line"></div><div class="line">//    n.setParam(&quot;string_param&quot;,&quot;default_string&quot;); </div><div class="line">//    pn.setParam(&quot;int_param&quot;,2333);   </div><div class="line"></div><div class="line">    printf(&quot;\nstring_param:  %s\n&quot;, s.c_str());//输出初始化值</div><div class="line">    printf(&quot;int_param:  %d\n\n&quot;, num);//输出初始化值</div><div class="line">    </div><div class="line">    ros::Rate loop_rate(0.5);</div><div class="line"></div><div class="line">    while (ros::ok())</div><div class="line">    &#123;</div><div class="line">        n.getParam(&quot;string_param&quot;,s);	</div><div class="line">        printf(&quot;string_param:  %s\n&quot;, s.c_str());</div><div class="line">        pn.getParam(&quot;int_param&quot;,num);</div><div class="line">        printf(&quot;int_param:  %d\n\n&quot;, num);</div><div class="line">        </div><div class="line">		ros::spinOnce();</div><div class="line">		loop_rate.sleep();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我们来分析一下上面的代码片段，首先是参数的初始化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">n.param&lt;string&gt;(&quot;string_param&quot;, s, &quot;default_string&quot;);</div><div class="line">pn.param&lt;int&gt;(&quot;int_param&quot;, num, 666);</div></pre></td></tr></table></figure></p>
+<p>上面的代码表示名称为”string_param”，值为”default_string”的参数初始化化std::string 类型变量s,用名称为”int_param”，值为666的参数初始化std::int类型变量num。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//    n.setParam(&quot;string_param&quot;,&quot;default_string&quot;); </div><div class="line">//    pn.setParam(&quot;int_param&quot;,2333);</div></pre></td></tr></table></figure>
+<p>这两句代码是设置参数的值，如果程序中注释掉这两句代码，会产生这样的后果：</p>
+<p>每次新开启机器时，第一次运行这个节点，s和num的值为我们设置的默认值，但是如果我们用rosparam set指令修改对应参数的值时，参数的值会保存在参数服务器中，默认的初始化值就不在有效，也就是说重新启动这个节点，参数值一直都是修改后的值。</p>
+<p>另外注释掉这两句代码，运行节点时用rosparam list是查看不到”string_param”和”int_param”两个参数的，并且对这两个参数用rosparam get是无效的，但rosparam set仍然有效，可能会带来一些不方便。</p>
+<p>如果不注释这两句代码，则运行节点时用rosparam list可以在参数列表中看到”string_param”和”int_param”两个参数，同样可以使用get和set指令。但会带来一个问题，就是不管用rosparam set指令将参数设为何值，重新运行节点时参数都被初始化位以上两句代码中给定的值。</p>
+<p>所以两种方法各有优缺点，分场合使用，或者可以使用更方便的launch文件来配置参数，下文将会提到。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  while (ros::ok())</div><div class="line">  &#123;</div><div class="line">      n.getParam(&quot;string_param&quot;,s);	</div><div class="line">      printf(&quot;string_param:  %s\n&quot;, s.c_str());</div><div class="line">      pn.getParam(&quot;int_param&quot;,num);</div><div class="line">      printf(&quot;int_param:  %d\n\n&quot;, num);</div><div class="line">      </div><div class="line">ros::spinOnce();</div><div class="line">loop_rate.sleep();</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>从参数服务器中读取参数值并显示，可以用rosparam set指令更改参数值。</p>
+<p>现在留意一下这个定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ros::NodeHandle pn(&quot;~my_namespace&quot;);</div></pre></td></tr></table></figure></p>
+<p>私有节点的定义可以参考<a href="http://wiki.ros.org/roscpp/Overview/NodeHandles" target="_blank" rel="external">http://wiki.ros.org/roscpp/Overview/NodeHandles</a></p>
+<p>私有节点在参数传递中十分有用，通常我们定义的普通节点是全局的，这样在多个节点具有相同名称的参数时将会产生问题，设想这样一种情况，两个不同的传感器但是都具有一个名为”frequerncy”的参数，当我们用rosparam set将它设置为10hz时，可能会影响到我们并不想配置的那个传感器。所以，我们用私有节点来解决这个问题。私有节点实际上就是给节点指定了它所在的命名空间。例如，我们可以用rosparam list指令查看这个节点中的参数，可以看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/param_demo/my_namespace/int_param</div><div class="line">/string_param</div></pre></td></tr></table></figure>
+<p>如果私有节点定义为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ros::NodeHandle pn(&quot;~&quot;);</div></pre></td></tr></table></figure>
+<p>则会看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/param_demo/int_param</div><div class="line">/string_param</div></pre></td></tr></table></figure>
+<p>在上文提到的参数初始化方式中，如果在程序中给定默认值，则想要改变默认值将需要重新编译程序，如果要频繁更改参数的话这种方式就十分不方便，我们还可以在launch文件中对参数进行设置，避免这个麻烦，参考以下示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;launch&gt;</div><div class="line">  &lt;node name=&quot;param_demo&quot; pkg=&quot;param_demo&quot; type=&quot;param_demo&quot; output=&quot;screen&quot;&gt; </div><div class="line"> 	 &lt;param name=&quot;string_param&quot; value=&quot;from launch file&quot; /&gt;</div><div class="line">  	 &lt;param name=&quot;int_param&quot; value=&quot;999&quot; /&gt;</div><div class="line">  &lt;/node&gt;</div><div class="line">&lt;/launch&gt;</div></pre></td></tr></table></figure>
+<p>不过在使用中要注意的是，似乎不能对全局节点和私有节点的参数同时初始化，所有尽量都使用私有节点来传递参数。<br>用launch文件初始化参数的优势是明显的，可以不查看源程序就可以知道节点用到的参数以及给定的初始值，并且找到一个合适的参数后，可以将它保存到launch文件而不必修改和重新编译源程序。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/26/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/26/ROS学习（九）ROS Network（1）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ROS学习（九）ROS Network（1）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="ROS学习（七）ROS参数服务（1）" data-title="ROS学习（七）ROS参数服务（1）" data-url="http://yoursite.com/2016/08/26/ROS学习（七）ROS参数服务（1）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wenglihong
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: /
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

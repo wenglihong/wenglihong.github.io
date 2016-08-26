@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>ROS学习（四）ROS消息传递——std_msgs | wengge987</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ROS中，节点之间通过发布话题和订阅话题来通信，在程序中是通过消息发布器和订阅器来实现，数据流通过话题的发布和订阅在节点之间传播，而数据流的数据类型则称为消息，例如ros入门教程中的节点talker和listener之间通过话题”chatter”来传递数据流，而数据流的具体数据类型则是std_msgs/String。参见http://wiki.ros.org/cn/ROS/Tutorials/Wr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS学习（四）ROS消息传递——std_msgs">
+<meta property="og:url" content="http://yoursite.com/2016/08/26/ROS学习（四）ROS消息传递——std_msgs/index.html">
+<meta property="og:site_name" content="wengge987">
+<meta property="og:description" content="ROS中，节点之间通过发布话题和订阅话题来通信，在程序中是通过消息发布器和订阅器来实现，数据流通过话题的发布和订阅在节点之间传播，而数据流的数据类型则称为消息，例如ros入门教程中的节点talker和listener之间通过话题”chatter”来传递数据流，而数据流的具体数据类型则是std_msgs/String。参见http://wiki.ros.org/cn/ROS/Tutorials/Wr">
+<meta property="og:updated_time" content="2016-08-26T03:24:08.700Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ROS学习（四）ROS消息传递——std_msgs">
+<meta name="twitter:description" content="ROS中，节点之间通过发布话题和订阅话题来通信，在程序中是通过消息发布器和订阅器来实现，数据流通过话题的发布和订阅在节点之间传播，而数据流的数据类型则称为消息，例如ros入门教程中的节点talker和listener之间通过话题”chatter”来传递数据流，而数据流的具体数据类型则是std_msgs/String。参见http://wiki.ros.org/cn/ROS/Tutorials/Wr">
+  
+    <link rel="alternative" href="/atom.xml" title="wengge987" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="0" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wenglihong</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ROS/" style="font-size: 10px;">ROS</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wenglihong</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img lazy-src="0" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wenglihong</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-ROS学习（四）ROS消息传递——std_msgs" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/26/ROS学习（四）ROS消息传递——std_msgs/" class="article-date">
+  	<time datetime="2016-08-25T16:00:00.000Z" itemprop="datePublished">2016-08-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ROS学习（四）ROS消息传递——std_msgs
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ROS/">ROS</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/ROS学习/">ROS学习</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ROS中，节点之间通过发布话题和订阅话题来通信，在程序中是通过消息发布器和订阅器来实现，数据流通过话题的发布和订阅在节点之间传播，而数据流的数据类型则称为消息，例如ros入门教程中的节点talker和listener之间通过话题”chatter”来传递数据流，而数据流的具体数据类型则是std_msgs/String。参见<a href="http://wiki.ros.org/cn/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29" target="_blank" rel="external">http://wiki.ros.org/cn/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29</a><br>教程中只介绍了std_msgs/String消息的发布和接收，但我们经常还需要传递其他类型比如整形，字符型等数据，这些类型的如何传递呢？实际上std_msgs中已经包含了所有的基本数据类型，我们可以rosmsg指令对我们不了解的数据类型进行详细的考察。<br>打开一个新终端，键入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rosmsg -h</div></pre></td></tr></table></figure>
+<p>可以看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">rosmsg is a command-line tool for displaying information about ROS Message types.</div><div class="line"></div><div class="line">Commands:</div><div class="line">	rosmsg show	Show message description</div><div class="line">	rosmsg list	List all messages</div><div class="line">	rosmsg md5	Display message md5sum</div><div class="line">	rosmsg package	List messages in a package</div><div class="line">	rosmsg packages	List packages that contain messages</div><div class="line"></div><div class="line">Type rosmsg &lt;command&gt; -h for more detailed usage</div></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rosmsg list</div></pre></td></tr></table></figure>
+<p>ros会输出工作空间中已经存在的所有类型消息，我们在其中可以找到std_msg包含的所有消息类型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">std_msgs/Bool</div><div class="line">std_msgs/Byte</div><div class="line">std_msgs/ByteMultiArray</div><div class="line">std_msgs/Char</div><div class="line">std_msgs/ColorRGBA</div><div class="line">std_msgs/Duration</div><div class="line">std_msgs/Empty</div><div class="line">std_msgs/Float32</div><div class="line">std_msgs/Float32MultiArray</div><div class="line">std_msgs/Float64</div><div class="line">std_msgs/Float64MultiArray</div><div class="line">std_msgs/Header</div><div class="line">std_msgs/Int16</div><div class="line">std_msgs/Int16MultiArray</div><div class="line">std_msgs/Int32</div><div class="line">std_msgs/Int32MultiArray</div><div class="line">std_msgs/Int64</div><div class="line">std_msgs/Int64MultiArray</div><div class="line">std_msgs/Int8</div><div class="line">std_msgs/Int8MultiArray</div><div class="line">std_msgs/MultiArrayDimension</div><div class="line">std_msgs/MultiArrayLayout</div><div class="line">std_msgs/String</div><div class="line">std_msgs/Time</div><div class="line">std_msgs/UInt16</div><div class="line">std_msgs/UInt16MultiArray</div><div class="line">std_msgs/UInt32</div><div class="line">std_msgs/UInt32MultiArray</div><div class="line">std_msgs/UInt64</div><div class="line">std_msgs/UInt64MultiArray</div><div class="line">std_msgs/UInt8</div><div class="line">std_msgs/UInt8MultiArray</div></pre></td></tr></table></figure></p>
+<p>再用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rosmsg show std_msgs/Int8</div></pre></td></tr></table></figure></p>
+<p>可已看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int8 data</div></pre></td></tr></table></figure>
+<p>也就是说，std_msgs/Int8实际上是由一个int8 类型的对象data组成，知道这些信息，我们就能够正确的构造消息发布器和订阅了<br>要发布一个消息，正确的做法应该是<br>1.包含相应的头文件<br>2.定义节点句柄和发布器，要指明发布的数据类型，话题和缓存队列大小<br>3.定义一个相应数据类型的对象并给其成员赋值<br>4.发布消息<br>参考下面代码片段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#include &quot;std_msgs/String.h&quot;</div><div class="line">...</div><div class="line"></div><div class="line">ros::NodeHandle nh;</div><div class="line">ros::Publisher pub_int8 = nh.advertise&lt;std_msgs::Int8&gt;(&quot;int8&quot;, 10);</div><div class="line">std_msgs::Int8 msg;</div><div class="line">msg.data = 1;</div><div class="line">pub_int8.publish(msg);</div></pre></td></tr></table></figure></p>
+<p>接收程序类似，也有几点需要注意<br>1.包含相应的头文件<br>2.定义节点句柄和订阅器，要指明订阅器订阅的话题，缓存队列大小和回调函数名<br>3.编写回调函数，回调函数的形参数据类型一定要对应正确的数据类型<br>4.进入循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">#include &quot;ros/ros.h&quot;</div><div class="line">#include &quot;std_msgs/Int8.h&quot;</div><div class="line"></div><div class="line">void int8Callback(const std_msgs::Int8::ConstPtr&amp; msg)</div><div class="line">&#123;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line">//这里也可以不用指针接收，则对发布的消息进行拷贝，如</div><div class="line">//void int8Callback(const std_msgs::Int8 msg)</div><div class="line"></div><div class="line">int main(int argc, char **argv)</div><div class="line">&#123;</div><div class="line">  ros::init(argc, argv, &quot;int8_sub&quot;);</div><div class="line">  ros::NodeHandle nh;</div><div class="line">  ros::Subscriber sub_int8 = nh.subscribe(&quot;int8&quot;, 10, int8Callback);</div><div class="line">  ros::spin();</div><div class="line">  return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另外，std_msg下还包含了基本数据类型的向量，我们也可以很方便地传递向量，不过除了上面包含的步骤外，向量的赋值要格外注意，应该使用pushback()函数来填充数据。例如一个double类型向量，应该这样发布<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">std_msgs::Float64MultiArray val;</div><div class="line"></div><div class="line">val.data.push_back(1.0);</div><div class="line">val.data.push_back(2.0);</div><div class="line">val.data.push_back(3.0);</div><div class="line">val.data.push_back(4.0);</div><div class="line">val.data.push_back(5.0);</div><div class="line">val.data.push_back(6.0);</div><div class="line"></div><div class="line">pub_double.publish(val);</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/26/ROS学习（十）ROS Network（2）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          ROS学习（十）ROS Network（2）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/26/ROS学习（八）ROS参数服务（2）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ROS学习（八）ROS参数服务（2）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="ROS学习（四）ROS消息传递——std_msgs" data-title="ROS学习（四）ROS消息传递——std_msgs" data-url="http://yoursite.com/2016/08/26/ROS学习（四）ROS消息传递——std_msgs/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wenglihong
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: /
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
