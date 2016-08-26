@@ -5,25 +5,22 @@
   
   <title>ROS学习（二）——ROS文件系统 | wengge987</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="date: 2016-08-26tags: ROScategories: ROS学习
-学习ROS的文件系统，要了解几个重要的概念，主要包括1.工作空间（workspace）2.程序包（package）3.节点（node）
+  <meta name="description" content="学习ROS的文件系统，要了解几个重要的概念，主要包括1.工作空间（workspace）2.程序包（package）3.节点（node）
 1.工作空间
-在ROS入门教程中，在开始所有的编程工作之前，首先是要创建一个catkin_ws，即catkin工作空间，需要创建这样一个工作空间的原因与这个catkin工具有关。">
+在ROS入门教程中，在开始所有的编程工作之前，首先是要创建一个catkin_ws，即catkin工作空间，需要创建这样一个工作空间的原因与这个catkin工具有关。    Catkin is a collection of CMake macros">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ROS学习（二）——ROS文件系统">
 <meta property="og:url" content="http://yoursite.com/2016/08/26/ROS学习（二）——文件系统/index.html">
 <meta property="og:site_name" content="wengge987">
-<meta property="og:description" content="date: 2016-08-26tags: ROScategories: ROS学习
-学习ROS的文件系统，要了解几个重要的概念，主要包括1.工作空间（workspace）2.程序包（package）3.节点（node）
+<meta property="og:description" content="学习ROS的文件系统，要了解几个重要的概念，主要包括1.工作空间（workspace）2.程序包（package）3.节点（node）
 1.工作空间
-在ROS入门教程中，在开始所有的编程工作之前，首先是要创建一个catkin_ws，即catkin工作空间，需要创建这样一个工作空间的原因与这个catkin工具有关。">
-<meta property="og:updated_time" content="2016-08-26T03:11:14.548Z">
+在ROS入门教程中，在开始所有的编程工作之前，首先是要创建一个catkin_ws，即catkin工作空间，需要创建这样一个工作空间的原因与这个catkin工具有关。    Catkin is a collection of CMake macros">
+<meta property="og:updated_time" content="2016-08-26T03:12:04.360Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ROS学习（二）——ROS文件系统">
-<meta name="twitter:description" content="date: 2016-08-26tags: ROScategories: ROS学习
-学习ROS的文件系统，要了解几个重要的概念，主要包括1.工作空间（workspace）2.程序包（package）3.节点（node）
+<meta name="twitter:description" content="学习ROS的文件系统，要了解几个重要的概念，主要包括1.工作空间（workspace）2.程序包（package）3.节点（node）
 1.工作空间
-在ROS入门教程中，在开始所有的编程工作之前，首先是要创建一个catkin_ws，即catkin工作空间，需要创建这样一个工作空间的原因与这个catkin工具有关。">
+在ROS入门教程中，在开始所有的编程工作之前，首先是要创建一个catkin_ws，即catkin工作空间，需要创建这样一个工作空间的原因与这个catkin工具有关。    Catkin is a collection of CMake macros">
   
     <link rel="alternate" href="/atom.xml" title="wengge987" type="application/atom+xml">
   
@@ -75,9 +72,13 @@
         <section id="main"><article id="post-ROS学习（二）——文件系统" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/08/26/ROS学习（二）——文件系统/" class="article-date">
-  <time datetime="2016-08-26T03:11:14.556Z" itemprop="datePublished">2016-08-26</time>
+  <time datetime="2016-08-25T16:00:00.000Z" itemprop="datePublished">2016-08-26</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ROS学习/">ROS学习</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -94,8 +95,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>date: 2016-08-26<br>tags: ROS<br>categories: ROS学习</p>
-<p>学习ROS的文件系统，要了解几个重要的概念，主要包括<br>1.工作空间（workspace）<br>2.程序包（package）<br>3.节点（node）</p>
+        <p>学习ROS的文件系统，要了解几个重要的概念，主要包括<br>1.工作空间（workspace）<br>2.程序包（package）<br>3.节点（node）</p>
 <p>1.工作空间</p>
 <p>在ROS入门教程中，在开始所有的编程工作之前，首先是要创建一个catkin_ws，即catkin工作空间，需要创建这样一个工作空间的原因与这个catkin工具有关。<br>    Catkin is a collection of CMake macros and associated code used to build packages used in ROS.<a href="http://docs.ros.org/api/catkin/html/" target="_blank" rel="external">参考网页</a><br>    就是说，catkin是一些cmake宏的集合，以及用于编译ros程序包的相关代码，简单理解它就是一个编译程序的工具，具体实现上可以参看ros安装目录下的catkin_make的python脚本，实际上catkin_make的工作就是确认各种编译需要的文件的存在性以及路径，解析程序包之间的依赖关系等等，简单了解即可。<br>    正是由于ros编译程序采用了catkin_make工具，因此我们需要将创建的程序包放在catkin工作空间中，这样就简化了编译程序的工作，省去了编写编译文件中的许多工作量。<br>更多关于catkin工作空间的资料，可以参考<br><a href="http://wiki.ros.org/cn/ROS/Tutorials/CreatingPackage" target="_blank" rel="external">http://wiki.ros.org/cn/ROS/Tutorials/CreatingPackage</a><br><a href="http://docs.ros.org/api/catkin/html/" target="_blank" rel="external">http://docs.ros.org/api/catkin/html/</a><br>/opt/ros/indigo/bin/catkin_make</p>
 <p>2.程序包</p>
@@ -113,20 +113,26 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/26/ROS学习（二）——文件系统/" data-id="cisb6lw0j0000egk6glishvmd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/26/ROS学习（二）——文件系统/" data-id="cisb6mxxp0000lxk6p55a16ps" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ROS/">ROS</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-  
-    <a href="/2016/08/26/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2016/08/26/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
     </a>
+  
   
 </nav>
 
@@ -138,12 +144,33 @@
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ROS学习/">ROS学习</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ROS/">ROS</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ROS/" style="font-size: 10px;">ROS</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -162,11 +189,11 @@
       <ul>
         
           <li>
-            <a href="/2016/08/26/ROS学习（二）——文件系统/">ROS学习（二）——ROS文件系统</a>
+            <a href="/2016/08/26/hello-world/">Hello World</a>
           </li>
         
           <li>
-            <a href="/2016/08/26/hello-world/">Hello World</a>
+            <a href="/2016/08/26/ROS学习（二）——文件系统/">ROS学习（二）——ROS文件系统</a>
           </li>
         
       </ul>
