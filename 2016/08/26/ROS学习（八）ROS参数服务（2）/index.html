@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ROS学习（八）ROS参数服务（2） | wengge987</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在上一篇文章中，实现了ROS程序中的参数初始化，并且用一个while循环检测参数服务器中的参数变化，实现了参数的动态修改。显然这样实现动态修改参数并不是最优，要浪费许多系统资源来检测参数修改，还有一个更优更方便，动态修改参数的方法，那就是使用dynamic_reconfigure参数服务。先贴代码
+12345678910111213141516171819202122232425262728293">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS学习（八）ROS参数服务（2）">
+<meta property="og:url" content="http://yoursite.com/2016/08/26/ROS学习（八）ROS参数服务（2）/index.html">
+<meta property="og:site_name" content="wengge987">
+<meta property="og:description" content="在上一篇文章中，实现了ROS程序中的参数初始化，并且用一个while循环检测参数服务器中的参数变化，实现了参数的动态修改。显然这样实现动态修改参数并不是最优，要浪费许多系统资源来检测参数修改，还有一个更优更方便，动态修改参数的方法，那就是使用dynamic_reconfigure参数服务。先贴代码
+12345678910111213141516171819202122232425262728293">
+<meta property="og:updated_time" content="2016-08-26T03:29:51.708Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ROS学习（八）ROS参数服务（2）">
+<meta name="twitter:description" content="在上一篇文章中，实现了ROS程序中的参数初始化，并且用一个while循环检测参数服务器中的参数变化，实现了参数的动态修改。显然这样实现动态修改参数并不是最优，要浪费许多系统资源来检测参数修改，还有一个更优更方便，动态修改参数的方法，那就是使用dynamic_reconfigure参数服务。先贴代码
+12345678910111213141516171819202122232425262728293">
+  
+    <link rel="alternate" href="/atom.xml" title="wengge987" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">wengge987</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ROS学习（八）ROS参数服务（2）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/26/ROS学习（八）ROS参数服务（2）/" class="article-date">
+  <time datetime="2016-08-25T16:00:00.000Z" itemprop="datePublished">2016-08-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ROS学习/">ROS学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ROS学习（八）ROS参数服务（2）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在上一篇文章中，实现了ROS程序中的参数初始化，并且用一个while循环检测参数服务器中的参数变化，实现了参数的动态修改。显然这样实现动态修改参数并不是最优，要浪费许多系统资源来检测参数修改，还有一个更优更方便，动态修改参数的方法，那就是使用dynamic_reconfigure参数服务。先贴代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">#include &lt;ros/ros.h&gt;</div><div class="line"></div><div class="line">// Dynamic reconfigure includes.</div><div class="line">#include &lt;dynamic_reconfigure/server.h&gt;</div><div class="line">// Auto-generated from cfg/ directory.</div><div class="line">#include &lt;param_demo/dynamic_paramConfig.h&gt;</div><div class="line"></div><div class="line">using namespace  std;</div><div class="line"></div><div class="line">string s;</div><div class="line">int num;</div><div class="line"></div><div class="line">void paramConfigCallback(param_demo::dynamic_paramConfig &amp;config, uint32_t level)</div><div class="line">&#123;</div><div class="line">	s = config.s;</div><div class="line">	num = config.num;</div><div class="line">	printf(&quot;\nstring_param:  %s\n&quot;, s.c_str());</div><div class="line">    printf(&quot;int_param:  %d\n\n&quot;, num);</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main(int argc, char** argv)</div><div class="line">&#123;</div><div class="line">    ros::init(argc, argv, &quot;dynamic_param_demo&quot;);</div><div class="line">    ros::NodeHandle pnh(&quot;~&quot;);</div><div class="line">    </div><div class="line">    dynamic_reconfigure::Server&lt;param_demo::dynamic_paramConfig&gt; dr_srv;</div><div class="line">  	dynamic_reconfigure::Server&lt;param_demo::dynamic_paramConfig&gt;::CallbackType cb;</div><div class="line">  	</div><div class="line">  	cb = boost::bind(&amp;paramConfigCallback, _1, _2);</div><div class="line">    dr_srv.setCallback(cb);</div><div class="line">  </div><div class="line">    </div><div class="line">    pnh.param&lt;string&gt;(&quot;string_param&quot;, s, &quot;default_string&quot;);</div><div class="line">    pnh.param&lt;int&gt;(&quot;int_param&quot;, num, 2333);</div><div class="line"></div><div class="line">    printf(&quot;\nstring_param:  %s\n&quot;, s.c_str());//输出初始化值</div><div class="line">    printf(&quot;int_param:  %d\n\n&quot;, num);//输出初始化值</div><div class="line">    </div><div class="line">    ros::spin();  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>片段分析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dynamic_reconfigure::Server&lt;param_demo::dynamic_paramConfig&gt; dr_srv;</div><div class="line">dynamic_reconfigure::Server&lt;param_demo::dynamic_paramConfig&gt;::CallbackType cb;</div></pre></td></tr></table></figure>
+<p>留意&lt;&gt;中的参数，param_demo是package名称，dynamic_paramConfig我们添加的参数配置服务，添加方式下文详述。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cb = boost::bind(&amp;paramConfigCallback, _1, _2);</div><div class="line">dr_srv.setCallback(cb);</div></pre></td></tr></table></figure>
+<p>paramConfigCallback是回调函数的名称，在回调函数中获取变更后的参数值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#include &lt;dynamic_reconfigure/server.h&gt;</div><div class="line">#include &lt;param_demo/dynamic_paramConfig.h&gt;</div></pre></td></tr></table></figure>
+<p>要使用动态参数配置服务，要包含配置文件，第一个是ros中dynamic_reconfigure程序包中的头文件，第二个则是我们添加的配置文件，并通过编译后产生的，要编译产生这个文件，我们需要对package.xml和CMakeList.txt做一些改动。<br>package.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;build_depend&gt;dynamic_reconfigure&lt;/build_depend&gt;</div><div class="line">&lt;run_depend&gt;dynamic_reconfigure&lt;/run_depend&gt;</div></pre></td></tr></table></figure></p>
+<p>加入dynamic_reconfigure程序包作为依赖项</p>
+<p>CMakeList.txt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">find_package(catkin REQUIRED COMPONENTS</div><div class="line"> ...</div><div class="line"> dynamic_reconfigure</div><div class="line">)</div><div class="line"></div><div class="line">generate_dynamic_reconfigure_options(</div><div class="line">   cfg/dynamic_param.cfg</div><div class="line"> )</div><div class="line"> </div><div class="line">catkin_package(</div><div class="line">  ...</div><div class="line">  CATKIN_DEPENDS ... dynamic_reconfigure</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>在上面几个地方加入对应的依赖项，其中cfg/dynamic_param.cfg是我们编写的配置文件，通过这个编译选项生成dynamic_paramConfig.h，dynamic_param.cfg位于cfg文件夹中，我们看下其中的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#! /usr/bin/env python</div><div class="line"></div><div class="line">PACKAGE=&apos;param_demo&apos;</div><div class="line">import roslib</div><div class="line">roslib.load_manifest(PACKAGE)</div><div class="line"></div><div class="line">from dynamic_reconfigure.parameter_generator_catkin import *</div><div class="line"></div><div class="line">gen = ParameterGenerator()</div><div class="line">#       Name       Type      Level Description     Default Min   Max</div><div class="line">gen.add(&quot;s&quot;,       str_t,    0,    &quot;string_param.&quot;, &quot;hello&quot;)</div><div class="line">gen.add(&quot;num&quot;,     int_t,    0,    &quot;int_param.&quot;,     1,    -100, 100)</div><div class="line"></div><div class="line">exit(gen.generate(PACKAGE, &quot;param_demo&quot;, &quot;param_demo&quot;))</div></pre></td></tr></table></figure>
+<p>其中，名字s和num和我们参数表中的变量名称对应，虽然只要在回调函数中赋值的时候进行正确的匹配，名字不同也可以，但是保持相同的名称有利于我们程序的编写和对参数的管理，如何编写cfg文件，可以参考下面的网页<br><a href="http://wiki.ros.org/dynamic_reconfigure/Tutorials/HowToWriteYourFirstCfgFile" target="_blank" rel="external">http://wiki.ros.org/dynamic_reconfigure/Tutorials/HowToWriteYourFirstCfgFile</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">void paramConfigCallback(param_demo::dynamic_paramConfig &amp;config, uint32_t level)</div><div class="line">&#123;</div><div class="line">	s = config.s;</div><div class="line">	num = config.num;</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>完成这些工作后，编译并运行这个节点，当然现在我们尽量选择用launch文件来启动并初始化参数，会在终端看到以下信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">string_param:  hello</div><div class="line">int_param:  1</div><div class="line"></div><div class="line">string_param:  initialize from launch file</div><div class="line">int_param:  999</div></pre></td></tr></table></figure>
+<p>这个信息有什么意义呢，也就是说，我们运行节点的时候，参数配置的回调函数会在初始化时被调用一次，改变了参数的值，这些初始化值可能与launch文件里给定的默认值不同，因此，我们要注意的是，将下面这个代码段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pnh.param&lt;string&gt;(&quot;string_param&quot;, s, &quot;default_string&quot;);</div><div class="line">pnh.param&lt;int&gt;(&quot;int_param&quot;, num, 2333);</div></pre></td></tr></table></figure>
+<p>放在初始化参数服务回调函数之后，这两句代码虽然对参数进行了初始化，但是如果从launch文件启动的话，其默认值由launcn文件中的参数值给定，这样，保证了我们运行节点初始化的参数值是确定的，这个对于一些对程序影响较大的参数的初始化很有意义。</p>
+<p>现在，还剩下的问题是如何去改变我们希望动态配置的参数呢，有两种选择<br>1.使用命令行<br>具体参考下面网页<br><a href="http://wiki.ros.org/dynamic_reconfigure" target="_blank" rel="external">http://wiki.ros.org/dynamic_reconfigure</a><br>2.使用rqt_reconfigure<br>参考页面<br><a href="http://wiki.ros.org/rqt_reconfigure" target="_blank" rel="external">http://wiki.ros.org/rqt_reconfigure</a><br>我们在终端输入命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rosrun rqt_reconfigure rqt_reconfigure</div></pre></td></tr></table></figure>
+<p>可以看到一个参数更改页面，我们也可以将这个命令放到launch文件中和节点一起启动，在调试的时候十分方便。</p>
+<p>完整工程代码查看<br><a href="https://github.com/wenglihong/wlh_ros_demo/tree/master/param_demo" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/tree/master/param_demo</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/08/26/ROS学习（八）ROS参数服务（2）/" data-id="cisb7d8ev000afdk6ka8wauvt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ROS/">ROS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/26/ROS学习（四）ROS消息传递——std_msgs/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ROS学习（四）ROS消息传递——std_msgs
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ROS学习/">ROS学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ROS/">ROS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ROS/" style="font-size: 10px;">ROS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/26/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/26/ROS学习（七）ROS参数服务（1）/">ROS学习（七）ROS参数服务（1）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/26/ROS学习（九）ROS Network（1）/">ROS学习（九）ROS Network（1）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/26/ROS学习（二）——文件系统/">ROS学习（二）——ROS文件系统</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/26/ROS学习（五）ROS消息传递——自定义消息/">ROS学习（五）ROS消息传递——自定义消息</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 wenglihong<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

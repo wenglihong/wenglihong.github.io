@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ROS学习（十）ROS Network（2） | wengge987</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="上一篇所提到的ROS系统之间的网络通讯，是通过将所有机器连接到一个ros master端口，实现不同机器之间消息的传递。这种方式有个潜在的缺陷，那就是整个网络中只能存在一个ros master，相当于只有一个服务器，所有机器发布和订阅的消息都必须经过该服务器，当数据量大时，可能会导致服务器负载过重（仅为猜测，未实际验证）。因此有必要探究一下能否实现两台机器之间分别运行自己的ros master，并">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS学习（十）ROS Network（2）">
+<meta property="og:url" content="http://yoursite.com/2016/08/26/ROS学习（十）ROS Network（2）/index.html">
+<meta property="og:site_name" content="wengge987">
+<meta property="og:description" content="上一篇所提到的ROS系统之间的网络通讯，是通过将所有机器连接到一个ros master端口，实现不同机器之间消息的传递。这种方式有个潜在的缺陷，那就是整个网络中只能存在一个ros master，相当于只有一个服务器，所有机器发布和订阅的消息都必须经过该服务器，当数据量大时，可能会导致服务器负载过重（仅为猜测，未实际验证）。因此有必要探究一下能否实现两台机器之间分别运行自己的ros master，并">
+<meta property="og:updated_time" content="2016-08-26T03:31:21.520Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ROS学习（十）ROS Network（2）">
+<meta name="twitter:description" content="上一篇所提到的ROS系统之间的网络通讯，是通过将所有机器连接到一个ros master端口，实现不同机器之间消息的传递。这种方式有个潜在的缺陷，那就是整个网络中只能存在一个ros master，相当于只有一个服务器，所有机器发布和订阅的消息都必须经过该服务器，当数据量大时，可能会导致服务器负载过重（仅为猜测，未实际验证）。因此有必要探究一下能否实现两台机器之间分别运行自己的ros master，并">
+  
+    <link rel="alternate" href="/atom.xml" title="wengge987" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">wengge987</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ROS学习（十）ROS Network（2）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/26/ROS学习（十）ROS Network（2）/" class="article-date">
+  <time datetime="2016-08-25T16:00:00.000Z" itemprop="datePublished">2016-08-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ROS学习/">ROS学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ROS学习（十）ROS Network（2）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上一篇所提到的ROS系统之间的网络通讯，是通过将所有机器连接到一个ros master端口，实现不同机器之间消息的传递。这种方式有个潜在的缺陷，那就是整个网络中只能存在一个ros master，相当于只有一个服务器，所有机器发布和订阅的消息都必须经过该服务器，当数据量大时，可能会导致服务器负载过重（仅为猜测，未实际验证）。因此有必要探究一下能否实现两台机器之间分别运行自己的ros master，并且能够互相通信的方法。<br>从ROS wiki中找到了一下几种其他的通讯方案</p>
+<p><a href="http://wiki.ros.org/rocon_multimaster" target="_blank" rel="external">rocon_multimaster</a><br><a href="http://wiki.ros.org/multimaster_fkie" target="_blank" rel="external">multimaster_fkie</a><br><a href="http://wiki.ros.org/foreign_relay" target="_blank" rel="external">foreign_relay</a><br><a href="http://wiki.ros.org/wifi_comm" target="_blank" rel="external">wifi_comm</a><br><a href="http://wiki.ros.org/multimaster" target="_blank" rel="external">multimaster</a></p>
+<p>比较一下感觉最后一个方案最为便捷，只需要做一些简单的配置而不涉及代码的修改。从链接中下载multimaster程序包，放在catkin_ws下的src文件夹，编译程序包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/catkin_ws</div><div class="line">rosmake multimaster</div></pre></td></tr></table></figure>
+<p>修改config.yaml的参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">local_pubs: [local_topics_to_register_at_foreign_master]</div><div class="line">foreign_pubs: [foreign_topics_to_register_at_local_master]</div><div class="line">local_services: [local_services_to_register_at_foreign_master]</div><div class="line">foreign_services: [foreign_services_to_register_at_local_master]</div></pre></td></tr></table></figure>
+<p>将要发布的话题名称放在local_pubs中，不同的话题用“，”隔开，其他几个选项类似。</p>
+<p>看一下master.launch里的内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;launch&gt;</div><div class="line">  &lt;arg name=&quot;master&quot; /&gt;</div><div class="line">  &lt;node pkg=&quot;multimaster&quot; type=&quot;master_sync.py&quot; name=&quot;master_sync&quot; output=&quot;screen&quot;&gt; </div><div class="line">    &lt;param name=&quot;foreign_master&quot; value=&quot;http://$(arg master):11311&quot; /&gt;      </div><div class="line">    &lt;rosparam command=&quot;load&quot; file=&quot;$(find multimaster)/config.yaml&quot; /&gt;</div><div class="line">  &lt;/node&gt;</div><div class="line">&lt;/launch&gt;</div></pre></td></tr></table></figure></p>
+<p>可以知道外面只需要一个远程master的ip地址作为参数，可以直接在launch文件里修改，也可以在运行launch文件时输入。如果在/etc/hosts文件中已经添加了远程计算机的ip地址和主机名，这里的参数直接使用主机名即可。</p>
+<p>运行master.launch<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">roslaunch multimaster master.launch master:=remote_host</div></pre></td></tr></table></figure></p>
+<p>这样，在两台计算机上分别运行master.launch后，就可以在命令行中看到远程计算机的ip与端口，发布和接收的消息，通讯就成功了。这个方案还有个好处是与第一种方案没有冲突，也就意味着我们可以选择某两台计算机作为服务器， 每个服务器又可以各自管理几台计算机，这样就可以降低第一种方案中一个服务器的压力。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/08/26/ROS学习（十）ROS Network（2）/" data-id="cisb7d8f8000lfdk6qnhoan6o" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ROS/">ROS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/26/ROS学习（六）ROS多线程订阅消息/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ROS学习（六）ROS多线程订阅消息
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/26/ROS学习（四）ROS消息传递——std_msgs/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ROS学习（四）ROS消息传递——std_msgs</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ROS学习/">ROS学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ROS/">ROS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ROS/" style="font-size: 10px;">ROS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/26/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/26/ROS学习（七）ROS参数服务（1）/">ROS学习（七）ROS参数服务（1）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/26/ROS学习（九）ROS Network（1）/">ROS学习（九）ROS Network（1）</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/26/ROS学习（二）——文件系统/">ROS学习（二）——ROS文件系统</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/26/ROS学习（五）ROS消息传递——自定义消息/">ROS学习（五）ROS消息传递——自定义消息</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 wenglihong<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
