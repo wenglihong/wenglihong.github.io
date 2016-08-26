@@ -228,6 +228,32 @@
   </entry>
   
   <entry>
+    <title>ROS学习（六）ROS多线程订阅消息</title>
+    <link href="http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%85%AD%EF%BC%89ROS%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%AE%A2%E9%98%85%E6%B6%88%E6%81%AF/"/>
+    <id>http://yoursite.com/2016/08/26/ROS学习（六）ROS多线程订阅消息/</id>
+    <published>2016-08-25T16:00:00.000Z</published>
+    <updated>2016-08-26T03:27:46.840Z</updated>
+    
+    <content type="html"><![CDATA[<p>对于一些只订阅一个话题的简单节点来说，我们使用ros::spin()进入接收循环，每当有订阅的话题发布时，进入回调函数接收和处理消息数据。但是更多的时候，一个节点往往要接收和处理不同来源的数据，并且这些数据的产生频率也各不相同，当我们在一个回调函数里耗费太多时间时，会导致其他回调函数被阻塞，导致数据丢失。这种场合需要给一个节点开辟多个线程，保证数据流的畅通。<br>为了观察不同话题的消息被阻塞的情况，可以参考以下实验代码<br><a href="https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_pub.cpp" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_pub.cpp</a><br><a href="https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_sub.cpp" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_sub.cpp</a><br>可以看到，发布程序中，以10hz的频率发布了chatter1和chatter2两个话题，在订阅程序中，回调函数1中加入了2s的延时，导致了回调函数2也只能2s才能接收到一个数据，为了是回调函数2能正常接收数据，我研究一下在一个ROS节点中开辟多个线程的方法。</p>
+<p>在ROS中，有两种方法可以在一个节点中开辟多个线程<br><strong>1.ros::MultiThreadedSpinner</strong><br>MultiThreadedSpinner类似于ros::spin()，在构造过程中可以指定它所用线程数，但如果不指定线程数或者线程数设置为0，它将在每个cpu内核开辟一个线程。<br>用法如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ros::MultiThreadedSpinner spinner(4); // Use 4 threads</div><div class="line">spinner.spin(); // spin() will not return until the node has been shutdown</div></pre></td></tr></table></figure></p>
+<p><strong>2.ros::AsyncSpinner</strong><br>AsyncSpinner比MultiThreadedSpinner更优，它有start() 和stop() 函数，并且在销毁的时候会自动停止。下面的用法等价于上面的MultiThreadedSpinner例子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ros::AsyncSpinner spinner(4); // Use 4 threads</div><div class="line">spinner.start();</div><div class="line">ros::waitForShutdown();</div></pre></td></tr></table></figure></p>
+<p>以上代码片参考了ROS wiki<br><a href="http://wiki.ros.org/roscpp/Overview/Callbacks%20and%20Spinning" target="_blank" rel="external">http://wiki.ros.org/roscpp/Overview/Callbacks%20and%20Spinning</a><br>完整的工程代码可以参考<br><a href="https://github.com/wenglihong/wlh_ros_demo/tree/master/multi_thread_demo" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/tree/master/multi_thread_demo</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;对于一些只订阅一个话题的简单节点来说，我们使用ros::spin()进入接收循环，每当有订阅的话题发布时，进入回调函数接收和处理消息数据。但是更多的时候，一个节点往往要接收和处理不同来源的数据，并且这些数据的产生频率也各不相同，当我们在一个回调函数里耗费太多时间时，会导致其
+    
+    </summary>
+    
+      <category term="ROS学习" scheme="http://yoursite.com/categories/ROS%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="ROS" scheme="http://yoursite.com/tags/ROS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ROS学习（十一）常见问题及解决方案</title>
     <link href="http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
     <id>http://yoursite.com/2016/08/26/ROS学习（十一）常见问题及解决方案/</id>
@@ -255,32 +281,6 @@
 &lt;li&gt;&lt;strong&gt;如何多次启动相同名称的节点&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;这个问题一般出现的场合有几种，需要用一份驱动程序打开多个相同的传感器，或者不同计算机通过协作，可能有节点和话题的名称产生冲突。&lt;br&gt;    对于这种情况，ROS给出了很简
-    
-    </summary>
-    
-      <category term="ROS学习" scheme="http://yoursite.com/categories/ROS%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="ROS" scheme="http://yoursite.com/tags/ROS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ROS学习（六）ROS多线程订阅消息</title>
-    <link href="http://yoursite.com/2016/08/26/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%85%AD%EF%BC%89ROS%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%AE%A2%E9%98%85%E6%B6%88%E6%81%AF/"/>
-    <id>http://yoursite.com/2016/08/26/ROS学习（六）ROS多线程订阅消息/</id>
-    <published>2016-08-25T16:00:00.000Z</published>
-    <updated>2016-08-26T03:27:46.840Z</updated>
-    
-    <content type="html"><![CDATA[<p>对于一些只订阅一个话题的简单节点来说，我们使用ros::spin()进入接收循环，每当有订阅的话题发布时，进入回调函数接收和处理消息数据。但是更多的时候，一个节点往往要接收和处理不同来源的数据，并且这些数据的产生频率也各不相同，当我们在一个回调函数里耗费太多时间时，会导致其他回调函数被阻塞，导致数据丢失。这种场合需要给一个节点开辟多个线程，保证数据流的畅通。<br>为了观察不同话题的消息被阻塞的情况，可以参考以下实验代码<br><a href="https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_pub.cpp" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_pub.cpp</a><br><a href="https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_sub.cpp" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/blob/master/multi_thread_demo/src/multi_topic_sub.cpp</a><br>可以看到，发布程序中，以10hz的频率发布了chatter1和chatter2两个话题，在订阅程序中，回调函数1中加入了2s的延时，导致了回调函数2也只能2s才能接收到一个数据，为了是回调函数2能正常接收数据，我研究一下在一个ROS节点中开辟多个线程的方法。</p>
-<p>在ROS中，有两种方法可以在一个节点中开辟多个线程<br><strong>1.ros::MultiThreadedSpinner</strong><br>MultiThreadedSpinner类似于ros::spin()，在构造过程中可以指定它所用线程数，但如果不指定线程数或者线程数设置为0，它将在每个cpu内核开辟一个线程。<br>用法如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ros::MultiThreadedSpinner spinner(4); // Use 4 threads</div><div class="line">spinner.spin(); // spin() will not return until the node has been shutdown</div></pre></td></tr></table></figure></p>
-<p><strong>2.ros::AsyncSpinner</strong><br>AsyncSpinner比MultiThreadedSpinner更优，它有start() 和stop() 函数，并且在销毁的时候会自动停止。下面的用法等价于上面的MultiThreadedSpinner例子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ros::AsyncSpinner spinner(4); // Use 4 threads</div><div class="line">spinner.start();</div><div class="line">ros::waitForShutdown();</div></pre></td></tr></table></figure></p>
-<p>以上代码片参考了ROS wiki<br><a href="http://wiki.ros.org/roscpp/Overview/Callbacks%20and%20Spinning" target="_blank" rel="external">http://wiki.ros.org/roscpp/Overview/Callbacks%20and%20Spinning</a><br>完整的工程代码可以参考<br><a href="https://github.com/wenglihong/wlh_ros_demo/tree/master/multi_thread_demo" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/tree/master/multi_thread_demo</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;对于一些只订阅一个话题的简单节点来说，我们使用ros::spin()进入接收循环，每当有订阅的话题发布时，进入回调函数接收和处理消息数据。但是更多的时候，一个节点往往要接收和处理不同来源的数据，并且这些数据的产生频率也各不相同，当我们在一个回调函数里耗费太多时间时，会导致其
     
     </summary>
     
