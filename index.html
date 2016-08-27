@@ -354,13 +354,7 @@
 
       
         
-          
-          
-如何多次启动相同名称的节点
-
-这个问题一般出现的场合有几种，需要用一份驱动程序打开多个相同的传感器
-          ...
-
+          <h3 id="如何多次启动相同名称的节点"><a href="#如何多次启动相同名称的节点" class="headerlink" title="如何多次启动相同名称的节点"></a>如何多次启动相同名称的节点</h3><p>这个问题一般出现的场合有几种，需要用一份驱动程序打开多个相同的传感器，或者不同计算机通过协作，可能有节点和话题的名称产生冲突。<br>    对于这种情况，ROS给出了很简便的解决方案，要做的只是采用launch文件启动节点，在launch文件中使用名字空间，将一个节点用两个同的节点名称来启动。例如我们有一个GPS传感器的驱动程序节点，节点名称为GPS_Driver，如果我们需要启动一个GPS传感器时，我们只需要写这样一个启动文件<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/01/ROS学习（十一）常见问题及解决方案/#more" rel="contents">
               阅读全文 &raquo;
@@ -482,10 +476,7 @@
 
       
         
-          
-          上一篇所提到的ROS系统之间的网络通讯，是通过将所有机器连接到一个ros master端口，实现不同
-          ...
-
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>上一篇所提到的ROS系统之间的网络通讯，是通过将所有机器连接到一个ros master端口，实现不同机器之间消息的传递。这种方式有个潜在的缺陷，那就是整个网络中只能存在一个ros master，相当于只有一个服务器，所有机器发布和订阅的消息都必须经过该服务器，当数据量大时，可能会导致服务器负载过重（仅为猜测，未实际验证）。因此有必要探究一下能否实现两台机器之间分别运行自己的ros master，并且能够互相通信的方法。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/08/ROS学习（十）ROS Network（2）/#more" rel="contents">
               阅读全文 &raquo;
@@ -607,10 +598,7 @@
 
       
         
-          
-          我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行
-          ...
-
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行了一个ros master，ros master相当于一个服务器，所有节点都可以通过ros master发布消息和订阅消息，还包括发布和订阅服务，以及参数服务，只有连接在相同ros master下的节点才能互相通信。<br>怎样才能知道节点是运行在哪个master下的呢？实际上ROS中默认一个机器上只运行一个ros master，其运行的端口默认为<a href="http://localhost:11311">http://localhost:11311</a>, 这个端口默认值存于ROS环境变量ROS_MASTER_URI中，可以通过下面指令查看检验，或者在运行roscore的命令行输出中也可以看到<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/08/ROS学习（九）ROS Network（1）/#more" rel="contents">
               阅读全文 &raquo;
@@ -732,10 +720,7 @@
 
       
         
-          
-          在上一篇文章中，实现了ROS程序中的参数初始化，并且用一个while循环检测参数服务器中的参数变化，
-          ...
-
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在上一篇文章中，实现了ROS程序中的参数初始化，并且用一个while循环检测参数服务器中的参数变化，实现了参数的动态修改。显然这样实现动态修改参数并不是最优，要浪费许多系统资源来检测参数修改，还有一个更优更方便，动态修改参数的方法，那就是使用dynamic_reconfigure参数服务。先贴代码<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/02/01/ROS学习（八）ROS参数服务（2）/#more" rel="contents">
               阅读全文 &raquo;
@@ -857,10 +842,7 @@
 
       
         
-          
-          在任何机器人系统中，参数传递都是一个十分重要的功能，不论是传感器的设置，还是控制参数的调整，都需要留
-          ...
-
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在任何机器人系统中，参数传递都是一个十分重要的功能，不论是传感器的设置，还是控制参数的调整，都需要留出方便的参数调试接口，有的参数只在启动程序启动时更改，有的参数却希望在运行时能够被动态修改，在ROS中，可以通过参数服务来实现上面的想法。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/02/01/ROS学习（七）ROS参数服务（1）/#more" rel="contents">
               阅读全文 &raquo;
@@ -982,10 +964,7 @@
 
       
         
-          
-          对于一些只订阅一个话题的简单节点来说，我们使用ros::spin()进入接收循环，每当有订阅的话题发
-          ...
-
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>对于一些只订阅一个话题的简单节点来说，我们使用ros::spin()进入接收循环，每当有订阅的话题发布时，进入回调函数接收和处理消息数据。但是更多的时候，一个节点往往要接收和处理不同来源的数据，并且这些数据的产生频率也各不相同，当我们在一个回调函数里耗费太多时间时，会导致其他回调函数被阻塞，导致数据丢失。这种场合需要给一个节点开辟多个线程，保证数据流的畅通。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/02/01/ROS学习（六）ROS多线程订阅消息/#more" rel="contents">
               阅读全文 &raquo;
@@ -1107,10 +1086,7 @@
 
       
         
-          
-          尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型
-          ...
-
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型的例子是can总线数据帧的传递，数据包中包括id号，数据长度以及数据部分，我们希望每个部分都有一个变量名称来表示，通常我们在这种场合会使用一个结构体封装数据，在ROS中，可以用自定义msg完成用户数据封装的功能。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/02/01/ROS学习（五）ROS消息传递——自定义消息/#more" rel="contents">
               阅读全文 &raquo;
@@ -1232,10 +1208,7 @@
 
       
         
-          
-          ROS中，节点之间通过发布话题和订阅话题来通信，在程序中是通过消息发布器和订阅器来实现，数据流通过话
-          ...
-
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>ROS中，节点之间通过发布话题和订阅话题来通信，在程序中是通过消息发布器和订阅器来实现，数据流通过话题的发布和订阅在节点之间传播，而数据流的数据类型则称为消息，例如ros入门教程中的节点talker和listener之间通过话题”chatter”来传递数据流，而数据流的具体数据类型则是std_msgs/String。参见<a href="http://wiki.ros.org/cn/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29">http://wiki.ros.org/cn/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29</a><br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/01/31/ROS学习（四）ROS消息传递——std_msgs/#more" rel="contents">
               阅读全文 &raquo;
@@ -1357,10 +1330,7 @@
 
       
         
-          
-          package.xml和CmakeList.txt文件是生成程序包和节点的重要配置文件，在开始编写我
-          ...
-
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>package.xml和CmakeList.txt文件是生成程序包和节点的重要配置文件，在开始编写我们的程序之前，对这两个文件的编写需要有一定的了解。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/01/31/ROS学习（三）——package.xml和CmakeList.txt文件的编写/#more" rel="contents">
               阅读全文 &raquo;
@@ -1482,10 +1452,7 @@
 
       
         
-          
-          学习ROS的文件系统，要了解几个重要的概念，主要包括1.工作空间（workspace）2.程序包（p
-          ...
-
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>学习ROS的文件系统，要了解几个重要的概念，主要包括<br>1.工作空间（workspace）<br>2.程序包（package）<br>3.节点（node）<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/01/30/ROS学习（二）——文件系统/#more" rel="contents">
               阅读全文 &raquo;

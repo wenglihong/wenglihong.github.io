@@ -86,19 +86,16 @@
 
 
 
-<meta name="description" content="尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型的例子是can总线数据帧的传递，数据包中包括id号，数据长度以及数据部分，我们希望每个部分都有一个变量名称来表示，通常我们在这种场合会使用一个结构体封装数据，在ROS中，可以用自定义msg完成用户数据封装的功能。以can数据帧的封装为例，来学习一下自定义msg的使用方法。
- 1.定义用户数据 这一步">
+<meta name="description" content="前言尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型的例子是can总线数据帧的传递，数据包中包括id号，数据长度以及数据部分，我们希望每个部分都有一个变量名称来表示，通常我们在这种场合会使用一个结构体封装数据，在ROS中，可以用自定义msg完成用户数据封装的功能。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ROS学习（五）ROS消息传递——自定义消息">
 <meta property="og:url" content="http://yoursite.com/2016/02/01/ROS学习（五）ROS消息传递——自定义消息/index.html">
 <meta property="og:site_name" content="wengge987">
-<meta property="og:description" content="尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型的例子是can总线数据帧的传递，数据包中包括id号，数据长度以及数据部分，我们希望每个部分都有一个变量名称来表示，通常我们在这种场合会使用一个结构体封装数据，在ROS中，可以用自定义msg完成用户数据封装的功能。以can数据帧的封装为例，来学习一下自定义msg的使用方法。
- 1.定义用户数据 这一步">
-<meta property="og:updated_time" content="2016-08-26T16:03:28.020Z">
+<meta property="og:description" content="前言尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型的例子是can总线数据帧的传递，数据包中包括id号，数据长度以及数据部分，我们希望每个部分都有一个变量名称来表示，通常我们在这种场合会使用一个结构体封装数据，在ROS中，可以用自定义msg完成用户数据封装的功能。">
+<meta property="og:updated_time" content="2016-08-27T02:36:33.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ROS学习（五）ROS消息传递——自定义消息">
-<meta name="twitter:description" content="尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型的例子是can总线数据帧的传递，数据包中包括id号，数据长度以及数据部分，我们希望每个部分都有一个变量名称来表示，通常我们在这种场合会使用一个结构体封装数据，在ROS中，可以用自定义msg完成用户数据封装的功能。以can数据帧的封装为例，来学习一下自定义msg的使用方法。
- 1.定义用户数据 这一步">
+<meta name="twitter:description" content="前言尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型的例子是can总线数据帧的传递，数据包中包括id号，数据长度以及数据部分，我们希望每个部分都有一个变量名称来表示，通常我们在这种场合会使用一个结构体封装数据，在ROS中，可以用自定义msg完成用户数据封装的功能。">
 
 
 
@@ -360,7 +357,8 @@
       
 
       
-        <p>尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型的例子是can总线数据帧的传递，数据包中包括id号，数据长度以及数据部分，我们希望每个部分都有一个变量名称来表示，通常我们在这种场合会使用一个结构体封装数据，在ROS中，可以用自定义msg完成用户数据封装的功能。<br>以can数据帧的封装为例，来学习一下自定义msg的使用方法。</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>尽管ROS中提供了全面的基本数据类型消息，但在很多场合，我们希望根据自己的需要定义数据类型，一个典型的例子是can总线数据帧的传递，数据包中包括id号，数据长度以及数据部分，我们希望每个部分都有一个变量名称来表示，通常我们在这种场合会使用一个结构体封装数据，在ROS中，可以用自定义msg完成用户数据封装的功能。<br><a id="more"></a></p>
+<h3 id="参考示例"><a href="#参考示例" class="headerlink" title="参考示例"></a>参考示例</h3><p>以can数据帧的封装为例，来学习一下自定义msg的使用方法。</p>
 <p> 1.定义用户数据<br> 这一步比较简单，在程序包文件夹下新建一个msg文件夹，在文件夹下新建一个can_data.msg文件，并在文件中写入以下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">std_msgs/Header header</div><div class="line">int16 id </div><div class="line">int16 len </div><div class="line">int32[4] data</div></pre></td></tr></table></figure></p>
 <p>这样就定义好了一个自定义消息，msg文件的名称就是消息的类型。</p>
 <p>2.添加编译支持<br>为了让自定义的数据类型能够使用，需要将它编译成ROS中的消息。在使用std_msgs时，我们知道，要使用某个数据类型的消息，需要包含对应的头文件。因此需要将.msg文件编译生成.h文件，并在使用自定义消息的场合包含改头文件。我们需要做以下几处更改。<br><strong>package.xml</strong><br>package.xml需要添加编译依赖项和运行依赖项</p>
@@ -370,7 +368,7 @@
 <p>generate_messages()去掉注释<br>catkin_package()添加message_runtime<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">catkin_package(</div><div class="line">  ...</div><div class="line">  CATKIN_DEPENDS ... message_runtime</div><div class="line">  ...</div><div class="line">)</div></pre></td></tr></table></figure></p>
 <p>在程序中要使用can_data数据类型时，要包含头文件#include “custom_msgs_demo/can_data.h”，头文件是ROS编译自动生成的，这样，就能在程序中定义和使用can_data类型对象</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">custom_msgs_demo::can_data output;</div><div class="line">output.header.seq = count;</div><div class="line">output.header.stamp = ros::Time::now();</div><div class="line">output.header.frame_id = &quot;can_data&quot;;</div><div class="line">output.id = 0x101;</div><div class="line">output.len = 2;</div><div class="line">output.data[0] = 10;</div><div class="line">output.data[1] = 20;</div><div class="line">output.data[2] = 30;</div><div class="line">output.data[3] = 40;</div></pre></td></tr></table></figure>
-<p>完整工程参考<br><a href="https://github.com/wenglihong/wlh_ros_demo/tree/master/msg_demo/custom_msgs_demo" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/tree/master/msg_demo/custom_msgs_demo</a></p>
+<h3 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h3><p>完整工程参考<br><a href="https://github.com/wenglihong/wlh_ros_demo/tree/master/msg_demo/custom_msgs_demo" target="_blank" rel="external">https://github.com/wenglihong/wlh_ros_demo/tree/master/msg_demo/custom_msgs_demo</a></p>
 
       
     </div>
@@ -588,7 +586,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考示例"><span class="nav-number">2.</span> <span class="nav-text">参考示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考代码"><span class="nav-number">3.</span> <span class="nav-text">参考代码</span></a></li></ol></div>
             
           </div>
         </section>

@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行了一个ros master，ros master相当于一个服务器，所有节点都可以通过ros master发布消息和订阅消息，还包括发布和订阅服务，以及参数服务，只有连接在相同ros master下的节点才能互相通信。怎样才能知道节点是运行在哪个master下的呢？实际上ROS中默认一个机器上只运行一">
+<meta name="description" content="前言我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行了一个ros master，ros master相当于一个服务器，所有节点都可以通过ros master发布消息和订阅消息，还包括发布和订阅服务，以及参数服务，只有连接在相同ros master下的节点才能互相通信。怎样才能知道节点是运行在哪个master下的呢？实际上ROS中默认一个机器上只运">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ROS学习（九）ROS Network（1）">
 <meta property="og:url" content="http://yoursite.com/2016/03/08/ROS学习（九）ROS Network（1）/index.html">
 <meta property="og:site_name" content="wengge987">
-<meta property="og:description" content="我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行了一个ros master，ros master相当于一个服务器，所有节点都可以通过ros master发布消息和订阅消息，还包括发布和订阅服务，以及参数服务，只有连接在相同ros master下的节点才能互相通信。怎样才能知道节点是运行在哪个master下的呢？实际上ROS中默认一个机器上只运行一">
-<meta property="og:updated_time" content="2016-08-26T16:04:52.148Z">
+<meta property="og:description" content="前言我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行了一个ros master，ros master相当于一个服务器，所有节点都可以通过ros master发布消息和订阅消息，还包括发布和订阅服务，以及参数服务，只有连接在相同ros master下的节点才能互相通信。怎样才能知道节点是运行在哪个master下的呢？实际上ROS中默认一个机器上只运">
+<meta property="og:updated_time" content="2016-08-27T02:39:36.186Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ROS学习（九）ROS Network（1）">
-<meta name="twitter:description" content="我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行了一个ros master，ros master相当于一个服务器，所有节点都可以通过ros master发布消息和订阅消息，还包括发布和订阅服务，以及参数服务，只有连接在相同ros master下的节点才能互相通信。怎样才能知道节点是运行在哪个master下的呢？实际上ROS中默认一个机器上只运行一">
+<meta name="twitter:description" content="前言我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行了一个ros master，ros master相当于一个服务器，所有节点都可以通过ros master发布消息和订阅消息，还包括发布和订阅服务，以及参数服务，只有连接在相同ros master下的节点才能互相通信。怎样才能知道节点是运行在哪个master下的呢？实际上ROS中默认一个机器上只运">
 
 
 
@@ -357,10 +357,13 @@
       
 
       
-        <p>我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行了一个ros master，ros master相当于一个服务器，所有节点都可以通过ros master发布消息和订阅消息，还包括发布和订阅服务，以及参数服务，只有连接在相同ros master下的节点才能互相通信。<br>怎样才能知道节点是运行在哪个master下的呢？实际上ROS中默认一个机器上只运行一个ros master，其运行的端口默认为<a href="http://localhost:11311,这个端口默认值存于ROS环境变量ROS_MASTER_URI中，可以通过下面指令查看检验，或者在运行roscore的命令行输出中也可以看到" target="_blank" rel="external">http://localhost:11311,这个端口默认值存于ROS环境变量ROS_MASTER_URI中，可以通过下面指令查看检验，或者在运行roscore的命令行输出中也可以看到</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo $ROS_MASTER_URI</div></pre></td></tr></table></figure></p>
-<p>还有其他一些ROS环境变量，可以了解一下<a href="http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH" target="_blank" rel="external">http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH</a><br>从上面的分析可以看出，即使是不同机器上的程序节点，只要通过网络连接到ros master的运行端口，就能实现消息的发布和订阅，并且发布的消息就能被所有连接到ros master端口的机器和节点所订阅，同样也可以订阅连接到这个端口的其他节点所发布的消息。有了这样的通讯方式，我们完全不用往我们的程序节点中添加任何与通讯相关的代码，就能订阅到其他机器发布的话题，与获取本机上其他节点发布的话题没有任何区别。<br>下面来梳理一下实现ROS多机通讯的实现方法。</p>
-<p> <strong>1. 保证多机之间网络连接无误</strong><br>     在/etc/hosts中添加想要连接的那台机器的ip地址和主机名称，使用ping指令检查本机的网络连接和其他机器的网络连接。这里需要注意，如果不止两台机器连接，需要把所有需要和本机通讯的机器的ip和主机名添加到hosts文件里。<br> <strong>2. 修改ROS环境变量</strong><br>与网络通讯相关的ROS环境变量主要有3个，分别是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ROS_MASTER_URI</div><div class="line">ROS_IP</div><div class="line">ROS_HOSTNAME</div></pre></td></tr></table></figure></p>
-<p>前面已经提到，这种通讯方式只能运行一个ros master，因此，选定一台机器作为master，将所有机器的ROS_MASTER_URI设置为改机器的ROS_MASTER_URI值，举个例子，我的主机名为wlh，则我的ROS_MASTER_URI应该设置为<a href="http://wlh:11311,则所有连接到我这个ros" target="_blank" rel="external">http://wlh:11311,则所有连接到我这个ros</a> master的机器上的ROS_MASTER_URI都应该设置为<a href="http://wlh:11311，设置环境变量值用export指令，ROS_IP和ROS_HOSTNAME则分别是本机的IP地址和主机名。" target="_blank" rel="external">http://wlh:11311，设置环境变量值用export指令，ROS_IP和ROS_HOSTNAME则分别是本机的IP地址和主机名。</a><br>    <strong>3. 简单测试</strong><br> 为了测试通讯是否成功，只要用rostopic pub指令在一台机器上发布一条消息，如果通讯成功，其他所有和该机器连接的机器上，就能使用rostopic echo接收到消息了。</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我们知道，在运行所有的ROS节点之前，一定要先使用指令roscore，实际上roscore指令是运行了一个ros master，ros master相当于一个服务器，所有节点都可以通过ros master发布消息和订阅消息，还包括发布和订阅服务，以及参数服务，只有连接在相同ros master下的节点才能互相通信。<br>怎样才能知道节点是运行在哪个master下的呢？实际上ROS中默认一个机器上只运行一个ros master，其运行的端口默认为<a href="http://localhost:11311" target="_blank" rel="external">http://localhost:11311</a>, 这个端口默认值存于ROS环境变量ROS_MASTER_URI中，可以通过下面指令查看检验，或者在运行roscore的命令行输出中也可以看到<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo $ROS_MASTER_URI</div></pre></td></tr></table></figure></p>
+<p>还有其他一些ROS环境变量，可以了解一下<br><a href="http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH" target="_blank" rel="external">http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH</a><br>从上面的分析可以看出，即使是不同机器上的程序节点，只要通过网络连接到ros master的运行端口，就能实现消息的发布和订阅，并且发布的消息就能被所有连接到ros master端口的机器和节点所订阅，同样也可以订阅连接到这个端口的其他节点所发布的消息。有了这样的通讯方式，我们完全不用往我们的程序节点中添加任何与通讯相关的代码，就能订阅到其他机器发布的话题，与获取本机上其他节点发布的话题没有任何区别。</p>
+<h3 id="多机通信配置方法"><a href="#多机通信配置方法" class="headerlink" title="多机通信配置方法"></a>多机通信配置方法</h3><p>下面来梳理一下实现ROS多机通讯的实现方法。</p>
+<h4 id="保证多机之间网络连接无误"><a href="#保证多机之间网络连接无误" class="headerlink" title="保证多机之间网络连接无误"></a>保证多机之间网络连接无误</h4><p>在/etc/hosts中添加想要连接的那台机器的ip地址和主机名称，使用ping指令检查本机的网络连接和其他机器的网络连接。这里需要注意，如果不止两台机器连接，需要把所有需要和本机通讯的机器的ip和主机名添加到hosts文件里。</p>
+<h4 id="修改ROS环境变量"><a href="#修改ROS环境变量" class="headerlink" title="修改ROS环境变量"></a>修改ROS环境变量</h4><p>与网络通讯相关的ROS环境变量主要有3个，分别是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ROS_MASTER_URI</div><div class="line">ROS_IP</div><div class="line">ROS_HOSTNAME</div></pre></td></tr></table></figure></p>
+<p>前面已经提到，这种通讯方式只能运行一个ros master，因此，选定一台机器作为master，将所有机器的ROS_MASTER_URI设置为改机器的ROS_MASTER_URI值，举个例子，我的主机名为wlh，则我的ROS_MASTER_URI应该设置为<a href="http://wlh:11311" target="_blank" rel="external">http://wlh:11311</a>, 则所有连接到我这个ros master的机器上的ROS_MASTER_URI都应该设置为<a href="http://wlh:11311" target="_blank" rel="external">http://wlh:11311</a>, 设置环境变量值用export指令，ROS_IP和ROS_HOSTNAME则分别是本机的IP地址和主机名。</p>
+<h4 id="简单测试"><a href="#简单测试" class="headerlink" title="简单测试"></a>简单测试</h4><p> 为了测试通讯是否成功，只要用rostopic pub指令在一台机器上发布一条消息，如果通讯成功，其他所有和该机器连接的机器上，就能使用rostopic echo接收到消息了。</p>
 <p>参考链接<br><a href="http://wiki.ros.org/ROS/Tutorials/MultipleMachines" target="_blank" rel="external">http://wiki.ros.org/ROS/Tutorials/MultipleMachines</a><br><a href="http://wiki.ros.org/ROS/NetworkSetup" target="_blank" rel="external">http://wiki.ros.org/ROS/NetworkSetup</a></p>
 
       
@@ -579,7 +582,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多机通信配置方法"><span class="nav-number">2.</span> <span class="nav-text">多机通信配置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#保证多机之间网络连接无误"><span class="nav-number">2.1.</span> <span class="nav-text">保证多机之间网络连接无误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改ROS环境变量"><span class="nav-number">2.2.</span> <span class="nav-text">修改ROS环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单测试"><span class="nav-number">2.3.</span> <span class="nav-text">简单测试</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
